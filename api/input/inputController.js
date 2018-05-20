@@ -1,10 +1,10 @@
 'use strict';
 
-const menuItem = require('../../models/test');
+const employee = require('../../models');
 // Dependencies
 
 function feedData (data) {
-  const dataInput = new menuItem(data);
+  const dataInput = new employee(data);
   return dataInput.save()
 };
 

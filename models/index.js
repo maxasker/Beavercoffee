@@ -1,5 +1,5 @@
-const menu = ('./test.js');
+const employee = ('./employees.js');
 
 module.exports = {
-  test
+  employee
 };

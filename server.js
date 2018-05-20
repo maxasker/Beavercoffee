@@ -19,7 +19,7 @@ mongoose.connection.once('open', function(){
 });
 
 // Server application
-console.log('Starting server.');
+console.log('Starting server...');
 function initServer(){
 app.use(cors({
   credentials: true,
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/api/input', inputController.router);
 app.listen(PORT);
-console.log('Server started...');
+console.log('Server started.');
 }
 
 initServer();
