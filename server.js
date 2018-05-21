@@ -27,7 +27,7 @@ function initServer () {
   }));
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-  app.use('/api/input', inputController.router);
+  app.use('/api', inputController.router);
   app.listen(PORT);
   console.log('Server started.');
 }

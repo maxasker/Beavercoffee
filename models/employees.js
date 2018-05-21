@@ -13,11 +13,18 @@ const employeeSchema = new mongoose.Schema({
     zipcode: Number
   },
   current_role: String,
-  comments: {
-    type: Array,
-    ref: Comment,
-    required: false
-  },
+  comments: [{
+    date: {
+      type: Date,
+      default: (new Date())
+    },
+    text: {
+      type: String,
+      required: true
+    },
+    by: Number,
+    employer_id: Number
+  }],
   history: {
     type: Array,
     ref: History

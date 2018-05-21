@@ -6,7 +6,10 @@ const commentSchema = new mongoose.Schema({
     type: Date,
     default: (new Date())
   },
-  text: String,
+  text: {
+    type: String,
+    required: true
+  },
   by: Number,
   employer_id: Number
 });
