@@ -1,5 +1,5 @@
-const employee = ('./employees.js');
+const Employee = require('./employees.js');
 
 module.exports = {
-  employee
+  Employee
 };

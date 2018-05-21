@@ -1,6 +1,6 @@
 'use strict';
-import Comment from './comments';
-import History from './history';
+const Comment = require('./comments');
+const History = require('./history');
 const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
@@ -12,9 +12,9 @@ const employeeSchema = new mongoose.Schema({
     country: String,
     zipcode: Number
   },
-  current_role: String,
-  history: [History],
-  comments: [Comment]
+  current_role: String
+  // history: [History],
+  // comments: [Comment]
 });
 
 const employee = mongoose.model('employee', employeeSchema);
