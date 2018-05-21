@@ -1,12 +1,12 @@
 'use strict';
 
-const employee = require('../../models');
+const Employee = require('../../models');
 // Dependencies
 
 function feedData (data) {
-  const dataInput = new employee(data);
-  return dataInput.save()
-};
+  const dataInput = new Employee(data);
+  return dataInput.save();
+}
 
 module.exports = {
   feedData
