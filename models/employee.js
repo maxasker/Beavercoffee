@@ -1,5 +1,4 @@
 'use strict';
-// const Comment = require('./comments.js');
 const History = require('./history');
 const mongoose = require('mongoose');
 
@@ -14,21 +13,13 @@ const employeeSchema = new mongoose.Schema({
   },
   current_role: String,
   comments: [{
-    date: {
-      type: Date,
-      default: (new Date())
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    by: Number,
-    employer_id: Number
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'comment'
   }],
-  history: {
+  history: [{
     type: Array,
     ref: History
-  }
+  }]
 });
 
 const employee = mongoose.model('employee', employeeSchema);
