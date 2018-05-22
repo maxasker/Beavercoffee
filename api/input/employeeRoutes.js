@@ -23,6 +23,16 @@ function findAll(req, res) {
 	});
 }
 
+function findOne(req, res) {
+  models.Employee.findById(req.params.employeeId)
+  .then(function (result) {
+    handleResponse(res, result);
+  })  
+  .catch(function (err) {
+    handleError(res, err);
+  }); 
+}
+
 // Error handler
 const handleError = (res, err) => {
   return res.status(500).send(String(err));
@@ -35,5 +45,6 @@ const handleResponse = (res, result) => {
 
 module.exports = {
   create,
-	findAll
+	findAll,
+	findOne
 } 
