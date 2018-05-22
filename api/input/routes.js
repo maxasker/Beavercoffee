@@ -10,7 +10,7 @@ function input (req, res) {
   .catch(function (err) {
     handleError(res, err);
   });
-};
+}
 
 // Error handler
 const handleError = (res, err) => {

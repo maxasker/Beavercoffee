@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema({
     default: (new Date())
   },
   text: {
-    type: String,
+    type: Number,
     required: true
   },
   by: Number,

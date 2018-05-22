@@ -7,7 +7,7 @@ const historySchema = new mongoose.Schema({
     type: Date,
     default: (new Date())
   },
-  end_date: Number, //Should be date, doing Number for testing purposes
+  end_date: Number, // ändra till date efter test
   perc_fulltime: Number
 });
 

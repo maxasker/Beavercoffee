@@ -1,5 +1,5 @@
 'use strict';
-const Comment = require('./comments.js');
+// const Comment = require('./comments.js');
 const History = require('./history');
 const mongoose = require('mongoose');
 

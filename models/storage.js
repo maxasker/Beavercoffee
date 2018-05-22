@@ -1,9 +1,9 @@
 'use strict';
 const mongoose = require('mongoose');
-import Product from './products';
+const Products = require('./products.js')
 
 const storageSchema = new mongoose.Schema({
-  products = [Product]
+  products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Products'}]
 });
 
 const storage = mongoose.model('storage', storageSchema);
