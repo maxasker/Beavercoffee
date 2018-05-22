@@ -3,7 +3,7 @@ const Comment = require('./comments.js');
 const History = require('./history');
 const mongoose = require('mongoose');
 
-const employeeSchema = new mongoose.Schema({
+const employeeSchema = mongoose.Schema({
   social_security: Number,
   name: String,
   adress: {
@@ -31,6 +31,6 @@ const employeeSchema = new mongoose.Schema({
   }
 });
 
-const employee = mongoose.model('employee', employeeSchema);
+const employee = mongoose.model('Employee', employeeSchema);
 
 module.exports = employee;

@@ -3,7 +3,8 @@
 const routes = require('./routes');
 const router = require('express').Router();
 
-router.post('/', routes.input);
+router.post('/employees', routes.employee);
+router.post('/test', routes.input);
 
 module.exports = {
   router
