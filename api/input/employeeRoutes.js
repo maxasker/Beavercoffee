@@ -33,6 +33,18 @@ function findOne(req, res) {
   }); 
 }
 
+function updateOne(req, res) {
+	models.Employee.findOneAndUpdate(req.params.employeeId,
+		{name:req.body.name, current_role: req.body.current_role},
+		{new:true})
+	.then(function (result) {
+		    handleResponse(res, result);
+		  })
+	  .catch(function (err) {
+			    handleError(res, err);
+			  });
+}
+
 // Error handler
 const handleError = (res, err) => {
   return res.status(500).send(String(err));
@@ -46,5 +58,6 @@ const handleResponse = (res, result) => {
 module.exports = {
   create,
 	findAll,
-	findOne
+	findOne,
+	updateOne
 } 

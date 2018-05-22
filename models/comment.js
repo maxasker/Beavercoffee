@@ -14,10 +14,6 @@ const commentSchema = new mongoose.Schema({
   employer_id: Number
 });
 
-<<<<<<< HEAD:models/comment.js
 const Comment = mongoose.model('Comment', commentSchema);
-=======
-const comment = mongoose.model('Comment', commentSchema);
->>>>>>> origin/madde:models/comments.js
 
 module.exports = Comment;

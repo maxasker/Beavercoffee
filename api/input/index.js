@@ -6,7 +6,8 @@ const router = require('express').Router();
 
 router.post('/employees', employeeRoutes.create);
 router.get('/employees', employeeRoutes.findAll);
-router.get('/employes/:employeeId', employeeRoutes.findOne);
+router.get('/employees/:employeeId', employeeRoutes.findOne);
+router.put('/employees/:employeeId', employeeRoutes.updateOne);
 
 module.exports = {
   router
