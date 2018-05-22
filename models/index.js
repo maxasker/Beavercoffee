@@ -1,5 +1,5 @@
-const Employee = require('./employees.js');
-const Comment = require('./comments.js');
+const Employee = require('./employee.js');
+const Comment = require('./comment.js');
 
 module.exports = {
   Comment,
