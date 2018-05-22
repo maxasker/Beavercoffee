@@ -11,7 +11,7 @@ const customerSchema = new mongoose.Schema({
     country: String,
     beverages: Number,
     member_since: Date,
-  adress: {
+  address: {
     street_name: String,
     city: String,
     country: String,
