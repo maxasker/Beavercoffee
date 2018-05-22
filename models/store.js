@@ -10,14 +10,14 @@ const storeSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Storage'
   },
-  employees: {
+  employees: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee'
-  },
-  orders: {
+  }],
+  orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Order'
-  }
+  }]
 });
 
 const Store = mongoose.model('Storage', storeSchema);
