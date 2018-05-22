@@ -14,6 +14,6 @@ const commentSchema = new mongoose.Schema({
   employer_id: Number
 });
 
-const comment = mongoose.model('comment', commentSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
-module.exports = comment;
+module.exports = Comment;

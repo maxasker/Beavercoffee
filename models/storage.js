@@ -1,6 +1,5 @@
 'use strict';
 const mongoose = require('mongoose');
-const Products = require('./products.js')
 
 const storageSchema = new mongoose.Schema({
   products: [{
@@ -8,6 +7,6 @@ const storageSchema = new mongoose.Schema({
     ref: 'Products'}]
 });
 
-const storage = mongoose.model('storage', storageSchema);
+const Storage = mongoose.model('Storage', storageSchema);
 
-module.exports = storage;
+module.exports = Storage;

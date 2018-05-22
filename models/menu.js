@@ -7,13 +7,13 @@ const menuSchema = new mongoose.Schema({
   ingredients: [{
     product: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'products'
+      ref: 'Product'
     },
     amount: Number,
     metric: String
   }]
 });
 
-const menu = mongoose.model('menuItem', menuSchema);
+const Menu = mongoose.model('Menu', menuSchema);
 
-module.exports = menu;
+module.exports = Menu;
