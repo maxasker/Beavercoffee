@@ -11,3 +11,4 @@ function feedData (data) {
 module.exports = {
   feedData
 };
+

@@ -1,6 +1,7 @@
 'use strict';
 
 const inputController = require('./inputController');
+const employeeController = require('./employeeController.js');
 
 function input (req, res) {
   return inputController.feedData(req.body)
@@ -12,6 +13,26 @@ function input (req, res) {
   });
 }
 
+function employee(req, res) {
+	return employeeController.postData(req.body)
+	.then(function (result) {
+		handleResponse(res, result);
+	})
+	.catch(function (err) {
+		handleError(res, err);
+	});
+};
+
+function getEmployees(req, res) {
+  return employeeController.getData(req.body)
+  .then(function (result) { 
+    handleResponse(res, result);
+  })
+  .catch(function (err) { 
+    handleError(res, err);
+  });
+};
+
 // Error handler
 const handleError = (res, err) => {
   return res.status(500).send(String(err));
@@ -22,6 +43,8 @@ const handleResponse = (res, result) => {
   res.send(result);
 };
 
-module.exports = {
-  input
+module.exports  = {
+	employee,
+	getEmployees,
+	input
 };
