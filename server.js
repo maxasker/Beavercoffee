@@ -3,6 +3,7 @@
 // Dependencies
 // const config = require('../config');
 const inputController = require('./api/input');
+const customerController = require('./api/input');
 const bodyParser = require('body-parser');
 const app = require('express')();
 const cors = require('cors');
@@ -28,6 +29,7 @@ function initServer () {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use('/api', inputController.router);
+app.use('/api', customerController.router);
   app.listen(PORT);
   console.log('Server started.');
 }

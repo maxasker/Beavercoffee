@@ -1,5 +1,8 @@
 const Employee = require('./employees.js');
 
+const Customer = require('./customer.js');
+
 module.exports = {
-  Employee
+  Customer,
+    Employee
 };
