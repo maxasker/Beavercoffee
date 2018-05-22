@@ -1,9 +1,11 @@
 'use strict';
 
 const routes = require('./routes');
+const employeeRoutes = require('./employeeRoutes');
 const router = require('express').Router();
 
-router.post('/', routes.input);
+router.post('/employees', employeeRoutes.create);
+router.get('/employees', employeeRoutes.findAll)
 
 module.exports = {
   router
