@@ -2,7 +2,7 @@
 const Comment = require('./comments.js');
 const History = require('./history');
 const mongoose = require('mongoose');
-
+/*
 const employeeSchema = mongoose.Schema({
   social_security: Number,
   name: String,
@@ -13,7 +13,9 @@ const employeeSchema = mongoose.Schema({
     zipcode: Number
   },
   current_role: String,
-  comments: [{
+  comments: {
+		type: Array,
+		default: {
     date: {
       type: Date,
       default: (new Date())
@@ -24,7 +26,28 @@ const employeeSchema = mongoose.Schema({
     },
     by: Number,
     employer_id: Number
-  }],
+  }
+	},
+  history: {
+    type: Array,
+    ref: History
+  }
+});
+*/
+const employeeSchema = mongoose.Schema({
+  social_security: Number,
+  name: String,
+  adress: {
+    street_name: String,
+    city: String,
+    country: String,
+    zipcode: Number
+  },
+  current_role: String,
+  comments: {
+		type: Array,
+		ref: Comment
+  },
   history: {
     type: Array,
     ref: History
