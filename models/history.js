@@ -11,6 +11,6 @@ const historySchema = new mongoose.Schema({
   perc_fulltime: Number
 });
 
-const history = mongoose.model('history', historySchema);
+const History = mongoose.model('History', historySchema);
 
-module.exports = history;
+module.exports = History;

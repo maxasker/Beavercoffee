@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
   employeeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'employees'
+    ref: 'Employee'
   },
   customer_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'customers'
+    ref: 'Customer'
   },
   price: Number,
   date: {
@@ -22,6 +22,6 @@ const orderSchema = new mongoose.Schema({
   }]
 });
 
-const order = mongoose.model('orderItem', orderSchema);
+const Order = mongoose.model('Order', orderSchema);
 
-module.exports = order;
+module.exports = Order;

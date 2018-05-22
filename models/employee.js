@@ -1,5 +1,4 @@
 'use strict';
-const History = require('./history');
 const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
@@ -14,14 +13,14 @@ const employeeSchema = new mongoose.Schema({
   current_role: String,
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'comment'
+    ref: 'Comment'
   }],
   history: [{
-    type: Array,
-    ref: History
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'History'
   }]
 });
 
-const employee = mongoose.model('employee', employeeSchema);
+const Employee = mongoose.model('Employee', employeeSchema);
 
-module.exports = employee;
+module.exports = Employee;
