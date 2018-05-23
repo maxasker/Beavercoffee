@@ -13,7 +13,7 @@ function create (req, res) {
 }
 
 function findAll(req, res) {
-	models.Employee.find()
+	controller.findAll()
 	.then(function (result) {
 		handleResponse(res, result);
 	})
@@ -23,7 +23,7 @@ function findAll(req, res) {
 }
 
 function findOne(req, res) {
-  models.Employee.findById(req.params.employeeId)
+	controller.findOne(req)
   .then(function (result) {
     handleResponse(res, result);
   })  
@@ -33,7 +33,7 @@ function findOne(req, res) {
 }
 
 function update(req, res) {
-	  makeUpdate(req)
+	  controller.makeUpdate(req)
 	  .then(function (result) {
 			    handleResponse(res, result);
 			  })
@@ -43,7 +43,7 @@ function update(req, res) {
 }
 
 function comment(req, res) {
-	makeComment(req)
+	controller.makeComment(req)
 	.then(function (result) {
 				handleResponse(res, result);
 		  })
@@ -53,7 +53,7 @@ function comment(req, res) {
 }
 
 function findEmpComments(req, res) {
-  getComments(req)
+  controller.getComments(req)
   .then(function (result) {
         handleResponse(res, result);
       })
@@ -61,51 +61,6 @@ function findEmpComments(req, res) {
         handleError(res, err);
       });
 }
-
-function makeUpdate(data) {
-	  var objForUpdate = {};
-	  if (data.body.name) objForUpdate.name = data.body.name;
-	  if (data.body.current_role) objForUpdate.current_role = data.body.current_role;
-		if (data.body.social_security) objForUpdate.social_security = data.body.social_security;
-		if (data.body.address){
-			if (data.body.address.street_name) objForUpdate['address.street_name'] = data.body.address.street_name;
-			if (data.body.address.city) objForUpdate['address.city'] = data.body.address.city;
-			if (data.body.address.country) objForUpdate['address.country'] = data.body.address.country;
-			if (data.body.address.zipcode) objForUpdate['address.zipcode'] = data.body.address.zipcode;
-		}
-		
-	  var setObj = { 
-			$set: objForUpdate,
-		}
-
-	  return models.Employee.findOneAndUpdate(
-					{_id: data.params.employeeId},
-			    setObj,
-			    {new:true}
-			  );
-};
-
-function makeComment(data) {
-		var comment = {
-			text: data.body.text,
-			author: data.body.author
-		}
-
-		var setObj = {
-			$push: {comments: comment}
-		}
-
-		return models.Employee.findOneAndUpdate(
-			{_id: data.params.employeeId},
-			setObj,
-			{new:true}
-		);
-};
-
-function getComments(data) {
-	return models.Employee.find({_id:data.params.employeeId},{comments: 1});
-}
-
 
 // Error handler
 const handleError = (res, err) => {
