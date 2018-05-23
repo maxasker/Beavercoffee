@@ -25,9 +25,20 @@ function getCustomer (req, res) {
   });
 };
 
-// update customer EJ FÄRDIG
+// update customer (OBS ALL DATA)
 function updateCustomer (req, res) {
     return customerController.updateData(req.params.name, req.body)
+  .then(function (result) {
+    handleResponse(res, result);
+  })
+  .catch(function (err) {
+    handleError(res, err);
+  });
+};
+
+// update beverages
+function updateBeverages (req, res) {
+    return customerController.updateBeverages(req.params.name, req.body)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -49,5 +60,6 @@ const handleResponse = (res, result) => {
 module.exports = {
   input,
     getCustomer,
-    updateCustomer
+    updateCustomer,
+    updateBeverages
 };

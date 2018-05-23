@@ -12,7 +12,11 @@ router.post('/customer', customerRoutes.input);
 
 router.get('/customer/:name', customerRoutes.getCustomer);
 
+//update customer
 router.put('/customer/:name', customerRoutes.updateCustomer);
+
+//update beverages for customr
+router.put('/customer/:name/beverages/', customerRoutes.updateBeverages);
 
 module.exports = {
   router
