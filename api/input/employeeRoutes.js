@@ -33,9 +33,25 @@ function findOne(req, res) {
   }); 
 }
 
+
+function makeSet(data) {
+	var objForUpdate = {};
+	for(var $key in data) {
+		console.log($key);
+		objForUpdate.$key = data.$key;
+	}
+	/*
+	data.forEach(function($key){
+		objForUpdate.$key = data.$key;
+	});*/
+	return objForUpdate;
+}
+
 function updateOne(req, res) {
+	//makeSet(req.body);
+	var setObj = {$set: makeSet(req.body)}
 	models.Employee.findOneAndUpdate(req.params.employeeId,
-		{name:req.body.name, current_role: req.body.current_role},
+		{setObj},
 		{new:true})
 	.then(function (result) {
 		    handleResponse(res, result);
