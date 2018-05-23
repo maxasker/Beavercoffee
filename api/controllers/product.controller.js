@@ -2,16 +2,16 @@
 const models = require('../../models');
 
 function create () {
-  const Storage = new models.Storage();
-  return Storage.save();
+  const Order = new models.Order();
+  return Order.save();
 }
 
 function findAll () {
-  return models.Storage.find();
+  return models.Order.find();
 }
 
 function findOne (id) {
-  return models.Store.findById(id);
+  return models.Order.findById(id);
 }
 
 module.exports = {
