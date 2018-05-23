@@ -25,11 +25,11 @@ router.get('/store:storeId', storeRoutes.findOneStore);
 
 //customer:
 router.post('/customer', customerRoutes.input);
-router.get('/customer/:name', customerRoutes.getCustomer);
-router.put('/customer/:name', customerRoutes.updateCustomer);
+router.get('/customer/:customerId', customerRoutes.getCustomer);
+router.put('/customer/:customerId', customerRoutes.updateCustomer);
 
 //update beverages for customr
-router.put('/customer/:name/beverages/', customerRoutes.updateBeverages);
+router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
 
 module.exports = {
   router
