@@ -14,6 +14,10 @@ const storeSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee'
   }],
+  menu: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Menu'
+  }],
   orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Order'
