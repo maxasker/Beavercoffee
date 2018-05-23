@@ -21,7 +21,7 @@ const employeeSchema = new mongoose.Schema({
       required: true
     },
     author: {
-      type: mongoose.Schema.types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Employee'
     }
   }],
