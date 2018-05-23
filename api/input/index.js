@@ -12,6 +12,8 @@ router.post('/customer', customerRoutes.input);
 
 router.get('/customer/:name', customerRoutes.getCustomer);
 
+router.put('/customer/:name', customerRoutes.updateCustomer);
+
 module.exports = {
   router
 };

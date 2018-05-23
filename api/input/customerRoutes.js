@@ -2,6 +2,8 @@
 
 const customerController = require('./customerController');
 
+
+// post customer
 function input (req, res) {
   return customerController.feedData(req.body)
   .then(function (result) {
@@ -23,6 +25,16 @@ function getCustomer (req, res) {
   });
 };
 
+// update customer EJ FÄRDIG
+function updateCustomer (req, res) {
+    return customerController.updateData(req.params.name, req.body)
+  .then(function (result) {
+    handleResponse(res, result);
+  })
+  .catch(function (err) {
+    handleError(res, err);
+  });
+};
 
 // Error handler
 const handleError = (res, err) => {
@@ -36,5 +48,6 @@ const handleResponse = (res, result) => {
 
 module.exports = {
   input,
-    getCustomer
+    getCustomer,
+    updateCustomer
 };
