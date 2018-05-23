@@ -11,9 +11,9 @@ const employeeSchema = new mongoose.Schema({
     zipcode: Number
   },
   current_role: {
-		type:String,
-		required: true
-	},
+    type: String,
+    required: true
+  },
   comments: [{
     date: {
       type: Date,

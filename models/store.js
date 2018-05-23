@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
 const storeSchema = mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  },
   location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Location'
+    street: String,
+    zipcode: Number,
+    city: String,
+    country: String
   },
   storage: {
     type: mongoose.Schema.Types.ObjectId,
@@ -14,10 +20,10 @@ const storeSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee'
   }],
-  menu: [{
+  menu: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Menu'
-  }],
+  },
   orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Order'
