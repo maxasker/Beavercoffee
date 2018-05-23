@@ -12,12 +12,30 @@ const employeeSchema = new mongoose.Schema({
   },
   current_role: String,
   comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
+    date: {
+      type: Date,
+      default: (new Date())
+    },
+    text: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: mongoose.Schema.types.ObjectId,
+      ref: 'Employee'
+    }
   }],
   history: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'History'
+    role: String,
+    start_date: {
+      type: Date,
+      default: (new Date())
+    },
+    end_date: {
+      type: Date,
+      required: false
+    },
+    perc_fulltime: Number
   }]
 });
 
