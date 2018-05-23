@@ -4,21 +4,13 @@ const models = require('../../models');
 // Dependencies
 
 function create (data) {
-  const dataInput = new models.Employee(data);
+	data.body.history = {"role": data.body.current_role}
+  const dataInput = new models.Employee(data.body);
   return dataInput.save();
 }
 
-function getAll(data) {
+function findAll(data) {
 	return models.Employee.find();
-	/*
-	models.Employee.find()
-	.then(employees => {
-		res.send(employees);
-	}).catch(err => {
-		res.status(500).send({
-			message: err.message || "Error occurred while retreiving employees"
-		});
-	});*/
 };
 
 function update(data) {
@@ -36,7 +28,7 @@ function update(data) {
 
 module.exports = {
   create,
-	getAll,
+	findAll,
 	update
 };
 
