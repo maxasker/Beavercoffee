@@ -1,9 +1,9 @@
 'use strict';
+const models = require('../../models');
 
-const storeController = require('../controllers/store.Controller');
-
-function createStore (req, res) {
-  return storeController.create(req.body)
+function create (req, res) {
+  const Storage = new models.Storage(req.body);
+  Storage.save()
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -12,23 +12,23 @@ function createStore (req, res) {
   });
 }
 
-function findAllStores (req, res) {
-  return storeController.findAll()
+function findAll (req, res) {
+  models.Storage.find()
   .then(function (result) {
-    handleResponse(result);
+    handleResponse(res, result);
   })
   .catch(function (err) {
-    handleError(err);
+    handleError(res, err);
   });
 }
 
-function findOneStore (req, res) {
-  return storeController.findOne(req.params.storeId)
+function findOne (req, res) {
+  models.Storage.findById(req.params.storeId)
   .then(function (result) {
-    handleResponse(result);
+    handleResponse(res, result);
   })
   .catch(function (err) {
-    handleError(err);
+    handleError(res, err);
   });
 }
 
@@ -43,7 +43,7 @@ const handleResponse = (res, result) => {
 };
 
 module.exports = {
-  createStore,
-  findAllStores,
-  findOneStore
+  create,
+  findAll,
+  findOne
 };
