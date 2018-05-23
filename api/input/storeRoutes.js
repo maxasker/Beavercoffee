@@ -13,7 +13,7 @@ function create (req, res) {
 }
 
 function findAll (req, res) {
-  models.Employee.find()
+  models.Store.find()
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -23,7 +23,7 @@ function findAll (req, res) {
 }
 
 function findOne (req, res) {
-  models.Employee.findById(req.params.employeeId)
+  models.Store.findById(req.params.storeId)
   .then(function (result) {
     handleResponse(res, result);
   })
