@@ -1,11 +1,9 @@
 'use strict';
 const models = require('../../models');
-//const inputController = require('./inputController');
+const controller = require('./employeeController');
 
 function create (req, res) {
-	req.body.history = {"role": req.body.current_role}
-	const Employee = new models.Employee(req.body);
-	Employee.save()
+	controller.create(req)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -15,7 +13,7 @@ function create (req, res) {
 }
 
 function findAll(req, res) {
-	models.Employee.find()
+	controller.findAll()
 	.then(function (result) {
 		handleResponse(res, result);
 	})
@@ -25,13 +23,43 @@ function findAll(req, res) {
 }
 
 function findOne(req, res) {
-  models.Employee.findById(req.params.employeeId)
+	controller.findOne(req)
   .then(function (result) {
     handleResponse(res, result);
   })  
   .catch(function (err) {
     handleError(res, err);
   }); 
+}
+
+function update(req, res) {
+	  controller.makeUpdate(req)
+	  .then(function (result) {
+			    handleResponse(res, result);
+			  })
+	  .catch(function (err) {
+			    handleError(res, err);
+			  });
+}
+
+function comment(req, res) {
+	controller.makeComment(req)
+	.then(function (result) {
+				handleResponse(res, result);
+		  })
+	.catch(function (err) {
+				handleError(res, err);
+			});
+}
+
+function findEmpComments(req, res) {
+  controller.getComments(req)
+  .then(function (result) {
+        handleResponse(res, result);
+      })
+  .catch(function (err) {
+        handleError(res, err);
+      });
 }
 
 // Error handler
@@ -47,5 +75,8 @@ const handleResponse = (res, result) => {
 module.exports = {
   create,
 	findAll,
-	findOne
+	findOne,
+	update,
+	comment,
+	findEmpComments
 } 

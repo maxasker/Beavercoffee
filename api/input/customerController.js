@@ -11,8 +11,8 @@ function feedData (data) {
 
 
 // Customer put data (OBS ALL DATA)
-function updateData (data, bodyData) {
-    return models.Customer.findOneAndUpdate({name:data}, {barcode:bodyData.barcode,
+function updateData (customerId, bodyData) {
+    return models.Customer.findOneAndUpdate({_id:customerId}, {barcode:bodyData.barcode,
         barcode:bodyData.barcode,
         name:bodyData.name,
         social_security:bodyData.social_security,
@@ -29,13 +29,13 @@ function updateData (data, bodyData) {
 }
 
 // Customer update beverages
-function updateBeverages (dataName, dataNbr) {
-    return models.Customer.findOneAndUpdate({name:dataName}, {beverages: dataNbr.beverages});
+function updateBeverages (customerId, dataNbr) {
+    return models.Customer.findOneAndUpdate({_id:customerId}, {beverages: dataNbr.beverages});
 }
 
 //Customer get data
-function getData (data) {
-    return models.Customer.find({name: data});
+function getData (customerId) {
+    return models.Customer.find({_id: customerId});
 }
 
 module.exports = {

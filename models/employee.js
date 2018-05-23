@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const employeeSchema = new mongoose.Schema({
   social_security: Number,
   name: String,
-  adress: {
+  address: {
     street_name: String,
     city: String,
     country: String,
