@@ -10,7 +10,10 @@ const employeeSchema = new mongoose.Schema({
     country: String,
     zipcode: Number
   },
-  current_role: String,
+  current_role: {
+		type:String,
+		required: true
+	},
   comments: [{
     date: {
       type: Date,
