@@ -1,8 +1,9 @@
 'use strict';
 const models = require('../../models');
-const inputController = require('./inputController');
+//const inputController = require('./inputController');
 
 function create (req, res) {
+	req.body.history = {"role": req.body.current_role}
 	const Employee = new models.Employee(req.body);
 	Employee.save()
   .then(function (result) {
