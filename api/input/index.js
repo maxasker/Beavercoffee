@@ -8,6 +8,7 @@ router.post('/employees', employeeRoutes.create);
 router.get('/employees', employeeRoutes.findAll);
 router.get('/employees/:employeeId', employeeRoutes.findOne);
 router.put('/employees/:employeeId', employeeRoutes.update);
+router.post('/employees/comments/:employeeId', employeeRoutes.comment);
 
 module.exports = {
   router

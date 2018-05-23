@@ -1,8 +1,9 @@
 'use strict';
 const models = require('../../models');
-const inputController = require('./inputController');
+//const inputController = require('./inputController');
 
 function create (req, res) {
+	req.body.history = {"role": req.body.current_role}
 	const Employee = new models.Employee(req.body);
 	Employee.save()
   .then(function (result) {
@@ -33,33 +34,68 @@ function findOne(req, res) {
   }); 
 }
 
-
-function makeSet(data) {
-	var objForUpdate = {};
-	for(var $key in data) {
-		console.log($key);
-		objForUpdate.$key = data.$key;
-	}
-	/*
-	data.forEach(function($key){
-		objForUpdate.$key = data.$key;
-	});*/
-	return objForUpdate;
-}
-
-function updateOne(req, res) {
-	//makeSet(req.body);
-	var setObj = {$set: makeSet(req.body)}
-	models.Employee.findOneAndUpdate(req.params.employeeId,
-		{setObj},
-		{new:true})
-	.then(function (result) {
-		    handleResponse(res, result);
-		  })
+function update(req, res) {
+	  makeUpdate(req)
+	  .then(function (result) {
+			    handleResponse(res, result);
+			  })
 	  .catch(function (err) {
 			    handleError(res, err);
 			  });
 }
+
+function comment(req, res) {
+	makeComment(req)
+	.then(function (result) {
+				handleResponse(res, result);
+		  })
+	.catch(function (err) {
+				handleError(res, err);
+			});
+}
+
+function makeUpdate(data) {
+	  var objForUpdate = {};
+	  if (data.body.name) objForUpdate.name = data.body.name;
+	  if (data.body.current_role) objForUpdate.current_role = data.body.current_role;
+		if (data.body.social_security) objForUpdate.social_security = data.body.social_security;
+		if (data.body.address){
+			if (data.body.address.street_name) objForUpdate['address.street_name'] = data.body.address.street_name;
+			if (data.body.address.city) objForUpdate['address.city'] = data.body.address.city;
+			if (data.body.address.country) objForUpdate['address.country'] = data.body.address.country;
+			if (data.body.address.zipcode) objForUpdate['address.zipcode'] = data.body.address.zipcode;
+		}
+		
+	  var setObj = { 
+			$set: objForUpdate,
+		}
+
+	  return models.Employee.findOneAndUpdate(
+					{_id: data.params.employeeId},
+			    setObj,
+			    {new:true}
+			  );
+};
+
+function makeComment(data) {
+		var comment = {
+			text: data.body.text,
+			author: data.body.author
+		}
+
+		var setObj = {
+			$push: {comments: comment}
+		}
+
+		return models.Employee.findOneAndUpdate(
+			{_id: data.params.employeeId},
+			setObj,
+			{new:true}
+		);
+};
+
+
+
 
 // Error handler
 const handleError = (res, err) => {
@@ -75,5 +111,6 @@ module.exports = {
   create,
 	findAll,
 	findOne,
-	updateOne
+	update,
+	comment
 } 
