@@ -21,10 +21,30 @@ function getComments(data) {
   return models.Employee.find({_id:data.params.employeeId},{comments: 1});
 }
 
+function makeHistory(data) {
+	const old = findOne(data);
+	var history = {
+		role: old.current_role,
+		end_date: new Date()
+	}
+
+	var pushObj = {
+		$push: {history: history}
+	}
+
+	return models.Employee.findOneAndUpdate(
+		{_id: data.params.employeeId},
+		pushObj,
+		{new:true}
+	);
+}
 function makeUpdate(data) {
     var objForUpdate = {};
     if (data.body.name) objForUpdate.name = data.body.name; 
-    if (data.body.current_role) objForUpdate.current_role = data.body.current_role;
+    if (data.body.current_role) {
+			objForUpdate.current_role = data.body.current_role;
+			makeHistory(data);
+		}
     if (data.body.social_security) objForUpdate.social_security = data.body.social_security;
     if (data.body.address){
       if (data.body.address.street_name) objForUpdate['address.street_name'] = data.body.address.street_name;
@@ -50,13 +70,13 @@ function makeComment(data) {
       author: data.body.author
     }
 
-    var setObj = {
+    var pushObj = {
       $push: {comments: comment}
     }
 
     return models.Employee.findOneAndUpdate(
       {_id: data.params.employeeId},
-      setObj,
+      pushObj,
       {new:true}
     );
 };
