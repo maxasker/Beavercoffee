@@ -1,6 +1,7 @@
 'use strict';
 
 const employeeRoutes = require('./employeeRoutes');
+const customerRoutes = require('./customerRoutes');
 const storeRoutes = require('./storeRoutes');
 const router = require('express').Router();
 
@@ -10,6 +11,14 @@ router.get('/employees/:employeeId', employeeRoutes.findOne);
 router.post('/store', storeRoutes.create);
 router.get('/store', storeRoutes.findAll);
 router.get('/store:storeId', storeRoutes.findOne);
+
+//customer:
+router.post('/customer', customerRoutes.input);
+router.get('/customer/:name', customerRoutes.getCustomer);
+router.put('/customer/:name', customerRoutes.updateCustomer);
+
+//update beverages for customr
+router.put('/customer/:name/beverages/', customerRoutes.updateBeverages);
 
 module.exports = {
   router
