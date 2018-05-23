@@ -9,6 +9,7 @@ router.get('/employees', employeeRoutes.findAll);
 router.get('/employees/:employeeId', employeeRoutes.findOne);
 router.put('/employees/:employeeId', employeeRoutes.update);
 router.post('/employees/comments/:employeeId', employeeRoutes.comment);
+router.get('/employees/comments/:employeeId', employeeRoutes.findEmpComments);
 
 module.exports = {
   router

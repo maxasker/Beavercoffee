@@ -1,11 +1,9 @@
 'use strict';
 const models = require('../../models');
-//const inputController = require('./inputController');
+const controller = require('./employeeController');
 
 function create (req, res) {
-	req.body.history = {"role": req.body.current_role}
-	const Employee = new models.Employee(req.body);
-	Employee.save()
+	controller.create(req)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -54,6 +52,16 @@ function comment(req, res) {
 			});
 }
 
+function findEmpComments(req, res) {
+  getComments(req)
+  .then(function (result) {
+        handleResponse(res, result);
+      })
+  .catch(function (err) {
+        handleError(res, err);
+      });
+}
+
 function makeUpdate(data) {
 	  var objForUpdate = {};
 	  if (data.body.name) objForUpdate.name = data.body.name;
@@ -94,7 +102,9 @@ function makeComment(data) {
 		);
 };
 
-
+function getComments(data) {
+	return models.Employee.find({_id:data.params.employeeId},{comments: 1});
+}
 
 
 // Error handler
@@ -112,5 +122,6 @@ module.exports = {
 	findAll,
 	findOne,
 	update,
-	comment
+	comment,
+	findEmpComments
 } 
