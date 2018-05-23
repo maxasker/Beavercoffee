@@ -2,7 +2,9 @@
 const models = require('../../models');
 const storageController = require('./storage.controller');
 const menuController = require('./storage.controller');
+const {ObjectId} = require('mongodb');
 
+// Skapar en store, skapar sedan en menu och storage och länkar ihop dem
 function create (data) {
   let storeId;
   const Store = new models.Store(data);
@@ -19,14 +21,17 @@ function create (data) {
   });
 }
 
+// enkel findALL
 function findAll () {
   return models.Store.find();
 }
 
+// enkel fineOne
 function findOne (id) {
   return models.Store.findById(id);
 }
 
+// tar emot ett storeId som den länkar ihop med linkName (tex storage) och linkId (id på storage)
 function linkStoreProps (storeId, linkName, linkId) {
   const updateData = {};
   updateData[linkName] = linkId;
@@ -37,6 +42,23 @@ function linkStoreProps (storeId, linkName, linkId) {
   });
 }
 
+function addToStore (storeId, type, newId) {
+  if (!ObjectId.isValid(storeId)) {
+    return Promise.reject(new TypeError(`Invalid id: ${storeId}`));
+  }
+  const updateData = {};
+  updateData[type] = newId;
+  var pushObj = {
+    $push: updateData
+  };
+  return models.Store.findOneAndUpdate(
+    {_id: ObjectId(storeId)},
+    pushObj,
+    {new: true}
+  );
+}
+
+// Skapar storage och menu, kallar på linkStoreProps efter varje
 function createStoreFields (storeId) {
   return storageController.create()
   .then(function (results) {
@@ -59,5 +81,6 @@ function createStoreFields (storeId) {
 module.exports = {
   create,
   findAll,
-  findOne
+  findOne,
+  addToStore
 };
