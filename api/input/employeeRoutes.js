@@ -5,7 +5,7 @@ const controller = require('../controllers/employeeController.js');
 
 function create (req, res) {
 	let rees;
-	return controller.create(req)
+	return controller.create(req.body)
   .then(function (result) {
 		rees = result;
 		return store.addToStore(req.params.storeId, "employees", result._id)
