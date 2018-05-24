@@ -31,7 +31,7 @@ router.get('/customer/:customerId', customerRoutes.getCustomer);
 router.put('/customer/:customerId', customerRoutes.updateCustomer);
 
 //products:
-router.post('/products', productRoutes.create);
+router.post('/:storeId/product/', productRoutes.create);
 router.get('/product/:productId', productRoutes.findOne);
 router.get('/products', productRoutes.listAll);
 router.put('/product/:productId', productRoutes.update);

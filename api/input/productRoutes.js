@@ -1,14 +1,28 @@
 'use strict';
 const models = require('../../models');
+const storeController = require('../controllers/store.Controller.js');
+const storageController = require('../controllers/storage.controller.js');
 
 //create new product
 function create (req, res) {
+    let productId;
+//    var productId;// = result._id;
 
     const data = new models.Product(req.body);
+
     data.save()
+    .then(function (result) {
+      productId = result._id;
+
+      return storeController.findOne(req.params.storeId)
+      .then(function (res) {
+
+        return storageController.addProduct(res.storage, productId)
         .then(function (result) {
-    handleResponse(res, result);
-  })
+          handleResponse(res, result);
+        });
+      });
+    })
   .catch(function (err) {
     handleError(res, err);
   });
@@ -28,8 +42,9 @@ function findOne (req, res) {
 
 // update amount
 function update (req, res) {
-    models.Product.findOneAndUpdate({_id:req.params.productId}, {total_amount:req.body})
-        .then(function (result) {
+     models.Product.findOneAndUpdate(
+         {_id:req.params.productId}, {total_amount:req.body})
+    .then(function (result) {
     handleResponse(res, result);
   })
   .catch(function (err) {

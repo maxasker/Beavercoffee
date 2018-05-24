@@ -2,20 +2,25 @@
 const models = require('../../models');
 
 function create () {
-  const Order = new models.Order();
-  return Order.save();
+  const Product = new models.Product();
+  return Product.save();
 }
 
 function findAll () {
-  return models.Order.find();
+  return models.Product.find();
 }
 
 function findOne (id) {
-  return models.Order.findById(id);
+  return models.Product.findById(id);
+}
+
+function updateAmount (id) {
+
 }
 
 module.exports = {
   create,
   findAll,
-  findOne
+  findOne,
+  updateAmount
 };
