@@ -1,7 +1,7 @@
 'use strict';
 const models = require('../../models');
 const storageController = require('./storage.controller');
-const menuController = require('./storage.controller');
+const menuController = require('./menu.controller');
 const {ObjectId} = require('mongodb');
 
 // Skapar en store, skapar sedan en menu och storage och länkar ihop dem
