@@ -1,8 +1,8 @@
 'use strict';
 const models = require('../../models');
 
-function create () {
-  const Product = new models.Product();
+function create (data) {
+  const Product = new models.Product(data);
   return Product.save();
 }
 

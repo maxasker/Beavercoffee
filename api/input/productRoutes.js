@@ -2,28 +2,27 @@
 const models = require('../../models');
 const storeController = require('../controllers/store.Controller.js');
 const storageController = require('../controllers/storage.controller.js');
+const productController = require('../controllers/product.controller.js');
 
 //create new product
 function create (req, res) {
+  let resCreate = res;
+  let productId;
+  productController.create(req.body)
+  .then(function (result) {
+    productId = result._id;
 
-    let resCreate = res;
-    let productId;
-
-    const data = new models.Product(req.body);
-
-    data.save()
-    .then(function (result) {
-      productId = result._id;
-
-      return storeController.findOne(req.params.storeId)
-      .then(function (res) {
-
-        return storageController.addProduct(res.storage, productId)
-        .then(function (result) {
-          handleResponse(resCreate, result);
+    return storeController.findOne(req.params.storeId)
+    .then(function (results) {
+      return storageController.addProduct(results.storage, productId)
+      .then(function () {
+        return productController.findOne(productId)
+        .then(function (results) {
+          handleResponse(res, results);
         });
       });
-    })
+    });
+  })
   .catch(function (err) {
     handleError(res, err);
   });
