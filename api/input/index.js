@@ -31,10 +31,10 @@ router.get('/customer/:customerId', customerRoutes.getCustomer);
 router.put('/customer/:customerId', customerRoutes.updateCustomer);
 
 //products:
-router.post('/:storeId/product/', productRoutes.create);
-router.get('/product/:productId', productRoutes.findOne);
+router.post('/:storeId/products/', productRoutes.create);
+router.get('/products/:productId', productRoutes.findOne);
 router.get('/products', productRoutes.listAll);
-router.put('/product/:productId', productRoutes.update);
+router.put('/products/:productId', productRoutes.update);
 
 //update beverages for customr
 router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
