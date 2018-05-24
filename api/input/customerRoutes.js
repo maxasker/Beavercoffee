@@ -1,6 +1,6 @@
 'use strict';
 
-const customerController = require('../controllers/customerController');
+const customerController = require('./customerController');
 
 
 // post customer

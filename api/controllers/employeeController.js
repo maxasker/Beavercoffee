@@ -4,7 +4,6 @@ const models = require('../../models');
 // Dependencies
 
 function create (data) {
-	console.log("CREATE");
 	data.body.history = {"role": data.body.current_role}
   const dataInput = new models.Employee(data.body);
   return dataInput.save();
@@ -23,8 +22,10 @@ function getComments(data) {
 }
 
 function makeHistory(data) {
+	console.log(data.params.employeeId);
+	const o = models.Employee.findById(data.params.employeeId);
 	const old = findOne(data);
-	
+	console.log(o);	
 	var history = {
 		role: old.current_role,
 		end_date: new Date()
