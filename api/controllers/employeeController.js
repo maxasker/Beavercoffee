@@ -4,15 +4,9 @@ const models = require('../../models');
 // Dependencies
 
 function create (data) {
-	data.body.history = {"role": data.body.current_role}
-  const dataInput = new models.Employee(data.body);
+	data.history = {"role": data.current_role,  "end_date":null}
+  const dataInput = new models.Employee(data);
   return dataInput.save();
-	//.then(function(res) {
-	//	storeController.addToStore(data.params.storeId, "employees", res._id);
-	//})
-	//.catch(function(err){
-	//	return err;
-	//});
 }
 
 function findAll(data) {
@@ -27,17 +21,79 @@ function getComments(data) {
   return models.Employee.find({_id:data.params.employeeId},{comments: 1});
 }
 
-function makeUpdate(data) {
-    var objForUpdate = {};
-    if (data.body.name) objForUpdate.name = data.body.name; 
-    if (data.body.current_role) objForUpdate.current_role = data.body.current_role;
+function getCurrentRole(id) {
+	return models.Employee.find({_id:id},{current_role:1});
+}
+
+function setOldDate(data){
+	return models.Employee.findOneAndUpdate(
+		{_id: data.params.employeeId, 'history.end_date':null},
+		{$set: {'history.$.end_date':new Date() }},
+		{new:true}
+	);
+}
+
+function makeHistory(data) {
+	var data = data;
+	return setOldDate(data)
+	.then(function() {
+	
+		var history = {
+			role: data.body.current_role,
+			end_date: null
+		}
+
+		var pushObj = {
+			$push: {history: {
+				$each: [history],
+				$position: 0
+			}}
+		}
+
+		return models.Employee.findOneAndUpdate(
+			{_id: data.params.employeeId},
+			pushObj,
+			{new:true}
+		);
+	});
+}
+
+function updateFields(data) {
+	var objForUpdate = {};
+	if (data.body.name) objForUpdate.name = data.body.name;
+    if (data.body.current_role) {
+      objForUpdate.current_role = data.body.current_role;
+    } 
     if (data.body.social_security) objForUpdate.social_security = data.body.social_security;
     if (data.body.address){
       if (data.body.address.street_name) objForUpdate['address.street_name'] = data.body.address.street_name;
       if (data.body.address.city) objForUpdate['address.city'] = data.body.address.city;
       if (data.body.address.country) objForUpdate['address.country'] = data.body.address.country;
       if (data.body.address.zipcode) objForUpdate['address.zipcode'] = data.body.address.zipcode;
-    }
+    } 
+	return objForUpdate;
+}
+
+function makeUpdate(data) {
+	var objForUpdate;
+	var data = data;
+	if(data.body.current_role){
+		return makeHistory(data)
+			.then(function() {
+				objForUpdate = updateFields(data);
+
+				var setObj = {
+					$set: objForUpdate,
+				}
+   
+				return models.Employee.findOneAndUpdate(
+          {_id: data.params.employeeId},
+          setObj,
+          {new:true}
+        );
+			});
+	} else {
+		objForUpdate = updateFields(data);
     
     var setObj = { 
       $set: objForUpdate,
@@ -47,7 +103,8 @@ function makeUpdate(data) {
           {_id: data.params.employeeId},
           setObj,
           {new:true}
-        );
+    );
+}
 }
 
 function makeComment(data) {
@@ -56,13 +113,13 @@ function makeComment(data) {
       author: data.body.author
     }
 
-    var setObj = {
+    var pushObj = {
       $push: {comments: comment}
     }
 
     return models.Employee.findOneAndUpdate(
       {_id: data.params.employeeId},
-      setObj,
+      pushObj,
       {new:true}
     );
 };

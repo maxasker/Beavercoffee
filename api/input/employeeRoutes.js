@@ -1,13 +1,17 @@
 'use strict';
 const models = require('../../models');
-const store = require('../controllers/store.controller.js');
-const controller = require('./employeeController');
+const store = require('../controllers/store.Controller.js');
+const controller = require('../controllers/employeeController.js');
 
 function create (req, res) {
-	controller.create(req)
+	let rees;
+	return controller.create(req.body)
   .then(function (result) {
-		store.addToStore(req.params.storeId, "employees", result._id);
-    handleResponse(res, result);
+		rees = result;
+		return store.addToStore(req.params.storeId, "employees", result._id)
+		.then(function() {
+			handleResponse(res, rees);
+		});
   })
   .catch(function (err) {
     handleError(res, err);

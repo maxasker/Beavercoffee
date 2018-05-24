@@ -32,7 +32,7 @@ const employeeSchema = new mongoose.Schema({
     role: String,
     start_date: {
       type: Date,
-      default: (new Date())
+      default: (Date.now)
     },
     end_date: {
       type: Date,
