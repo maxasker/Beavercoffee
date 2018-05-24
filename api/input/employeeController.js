@@ -1,5 +1,5 @@
 'use strict';
-
+const storeController = require('../controllers/store.controller.js');
 const models = require('../../models');
 // Dependencies
 
@@ -7,6 +7,12 @@ function create (data) {
 	data.body.history = {"role": data.body.current_role}
   const dataInput = new models.Employee(data.body);
   return dataInput.save();
+	//.then(function(res) {
+	//	storeController.addToStore(data.params.storeId, "employees", res._id);
+	//})
+	//.catch(function(err){
+	//	return err;
+	//});
 }
 
 function findAll(data) {
@@ -79,6 +85,10 @@ function makeComment(data) {
       pushObj,
       {new:true}
     );
+};
+
+const handleError = (res, err) => {
+  return res.status(500).send(String(err));
 };
 
 module.exports = {

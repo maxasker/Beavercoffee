@@ -16,7 +16,7 @@ function input (req, res) {
 
 //get customer
 function getCustomer (req, res) {
-     return customerController.getData(req.params.name)
+     return customerController.getData(req.params.customerId)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -27,7 +27,7 @@ function getCustomer (req, res) {
 
 // update customer (OBS ALL DATA)
 function updateCustomer (req, res) {
-    return customerController.updateData(req.params.name, req.body)
+    return customerController.updateData(req.params.customerId, req.body)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -38,7 +38,7 @@ function updateCustomer (req, res) {
 
 // update beverages
 function updateBeverages (req, res) {
-    return customerController.updateBeverages(req.params.name, req.body)
+    return customerController.updateBeverages(req.params.customerId, req.body)
   .then(function (result) {
     handleResponse(res, result);
   })
