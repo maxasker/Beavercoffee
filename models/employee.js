@@ -14,6 +14,7 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+	perc_fulltime: Number,
   comments: [{
     date: {
       type: Date,

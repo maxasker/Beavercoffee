@@ -4,7 +4,7 @@ const models = require('../../models');
 // Dependencies
 
 function create (data) {
-	data.history = {"role": data.current_role,  "end_date":null}
+	data.history = {"role": data.current_role,  "end_date":null, "perc_fulltime":data.perc_fulltime}
   const dataInput = new models.Employee(data);
   return dataInput.save();
 }
@@ -37,7 +37,13 @@ function makeHistory(data) {
 	var data = data;
 	return setOldDate(data)
 	.then(function() {
-	
+		return findOne(data)
+		.then(function(res) {
+		var updates = {};
+		(data.body.current_role) ? updates.role = data.body.current_role : updates.role = res.current_role;
+		(data.body.perc_fulltime) ? updates.perc_fulltime = data.body.perc_fulltime : updates.perc_fulltime = res.perc_fulltime;
+		updates.end_date = null;
+
 		var history = {
 			role: data.body.current_role,
 			end_date: null
@@ -45,7 +51,7 @@ function makeHistory(data) {
 
 		var pushObj = {
 			$push: {history: {
-				$each: [history],
+				$each: [updates],
 				$position: 0
 			}}
 		}
@@ -55,15 +61,15 @@ function makeHistory(data) {
 			pushObj,
 			{new:true}
 		);
+		});
 	});
 }
 
 function updateFields(data) {
 	var objForUpdate = {};
 	if (data.body.name) objForUpdate.name = data.body.name;
-    if (data.body.current_role) {
-      objForUpdate.current_role = data.body.current_role;
-    } 
+    if (data.body.current_role) objForUpdate.current_role = data.body.current_role;
+    if (data.body.perc_fulltime) objForUpdate.perc_fulltime = data.body.perc_fulltime;
     if (data.body.social_security) objForUpdate.social_security = data.body.social_security;
     if (data.body.address){
       if (data.body.address.street_name) objForUpdate['address.street_name'] = data.body.address.street_name;
@@ -77,7 +83,7 @@ function updateFields(data) {
 function makeUpdate(data) {
 	var objForUpdate;
 	var data = data;
-	if(data.body.current_role){
+	if(data.body.current_role || data.body.perc_fulltime){
 		return makeHistory(data)
 			.then(function() {
 				objForUpdate = updateFields(data);
