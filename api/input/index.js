@@ -3,6 +3,8 @@
 const employeeRoutes = require('./employeeRoutes');
 const customerRoutes = require('./customerRoutes');
 const storeRoutes = require('./storeRoutes');
+const productRoutes = require('./productRoutes');
+
 // const storageRoutes = require('./storageRoutes')
 const router = require('express').Router();
 
@@ -27,6 +29,12 @@ router.get('/store:storeId', storeRoutes.findOneStore);
 router.post('/customer', customerRoutes.input);
 router.get('/customer/:customerId', customerRoutes.getCustomer);
 router.put('/customer/:customerId', customerRoutes.updateCustomer);
+
+//products:
+router.post('/products', productRoutes.create);
+router.get('/products/:productId', productRoutes.findOne);
+router.get('/products', productRoutes.listAll);
+router.put('/products/:productId', productRoutes.update);
 
 //update beverages for customr
 router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
