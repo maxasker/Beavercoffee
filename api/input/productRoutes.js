@@ -14,7 +14,7 @@ function create (req, res) {
   });
 }
 
-//find location
+//find product
 function findOne (req, res) {
 
   models.Products.findById(req.params.productId)
@@ -26,7 +26,7 @@ function findOne (req, res) {
   });
 }
 
-// update
+// update amount
 function update (req, res) {
     models.Products.findOneAndUpdate({_id:req.params.productId}, {total_amount:req.body})
         .then(function (result) {
@@ -37,7 +37,7 @@ function update (req, res) {
   });
 }
 
-// list locations
+// list products
 function listAll (req, res) {
 	models.Products.find()
 	.then(function (result) {
