@@ -4,7 +4,7 @@ const models = require('../../models');
 //create new product
 function create (req, res) {
 
-    const data = new models.Products(req.body);
+    const data = new models.Product(req.body);
     data.save()
         .then(function (result) {
     handleResponse(res, result);
@@ -17,7 +17,7 @@ function create (req, res) {
 //find product
 function findOne (req, res) {
 
-  models.Products.findById(req.params.productId)
+  models.Product.findById(req.params.productId)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -28,7 +28,7 @@ function findOne (req, res) {
 
 // update amount
 function update (req, res) {
-    models.Products.findOneAndUpdate({_id:req.params.productId}, {total_amount:req.body})
+    models.Product.findOneAndUpdate({_id:req.params.productId}, {total_amount:req.body})
         .then(function (result) {
     handleResponse(res, result);
   })
@@ -39,7 +39,7 @@ function update (req, res) {
 
 // list products
 function listAll (req, res) {
-	models.Products.find()
+	models.Product.find()
 	.then(function (result) {
 		handleResponse(res, result);
 	})
