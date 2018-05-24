@@ -5,8 +5,9 @@ const storageController = require('../controllers/storage.controller.js');
 
 //create new product
 function create (req, res) {
+
+    let resCreate = res;
     let productId;
-//    var productId;// = result._id;
 
     const data = new models.Product(req.body);
 
@@ -19,7 +20,7 @@ function create (req, res) {
 
         return storageController.addProduct(res.storage, productId)
         .then(function (result) {
-          handleResponse(res, result);
+          handleResponse(resCreate, result);
         });
       });
     })
