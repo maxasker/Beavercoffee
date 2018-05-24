@@ -7,12 +7,6 @@ function create (data) {
 	data.body.history = {"role": data.body.current_role}
   const dataInput = new models.Employee(data.body);
   return dataInput.save();
-	//.then(function(res) {
-	//	storeController.addToStore(data.params.storeId, "employees", res._id);
-	//})
-	//.catch(function(err){
-	//	return err;
-	//});
 }
 
 function findAll(data) {
@@ -28,7 +22,10 @@ function getComments(data) {
 }
 
 function makeHistory(data) {
+	console.log(data.params.employeeId);
+	const o = models.Employee.findById(data.params.employeeId);
 	const old = findOne(data);
+	console.log(o);	
 	var history = {
 		role: old.current_role,
 		end_date: new Date()
