@@ -32,9 +32,9 @@ router.put('/customer/:customerId', customerRoutes.updateCustomer);
 
 //products:
 router.post('/products', productRoutes.create);
-router.get('/products/:productId', productRoutes.findOne);
+router.get('/product/:productId', productRoutes.findOne);
 router.get('/products', productRoutes.listAll);
-router.put('/products/:productId', productRoutes.update);
+router.put('/product/:productId', productRoutes.update);
 
 //update beverages for customr
 router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
