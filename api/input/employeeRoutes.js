@@ -1,6 +1,6 @@
 'use strict';
 const models = require('../../models');
-const store = require('../controllers/store.controller.js');
+const store = require('../controllers/store.Controller.js');
 const controller = require('../controllers/employeeController.js');
 
 function create (req, res) {
