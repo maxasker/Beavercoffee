@@ -5,25 +5,20 @@ const storageController = require('../controllers/storage.controller.js');
 
 //create new product
 function create (req, res) {
+  let resCreate = res;
+  let productId;
+  storageController.create(req.body)
+  .then(function (result) {
+    productId = result._id;
 
-    let resCreate = res;
-    let productId;
-
-    const data = new models.Product(req.body);
-
-    data.save()
-    .then(function (result) {
-      productId = result._id;
-
-      return storeController.findOne(req.params.storeId)
-      .then(function (res) {
-
-        return storageController.addProduct(res.storage, productId)
-        .then(function (result) {
-          handleResponse(resCreate, result);
-        });
+    return storeController.findOne(req.params.storeId)
+    .then(function (res) {
+      return storageController.addProduct(res.storage, productId)
+      .then(function (result) {
+        handleResponse(resCreate, result);
       });
-    })
+    });
+  })
   .catch(function (err) {
     handleError(res, err);
   });
