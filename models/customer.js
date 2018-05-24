@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose');
 
+//history:
+const mongooseHistory = require('mongoose-history');
+
 const customerSchema = new mongoose.Schema({
     barcode: Number,
     name: String,
@@ -20,5 +23,7 @@ const customerSchema = new mongoose.Schema({
 });
 
 const customer = mongoose.model('customer', customerSchema);
+
+customer.plugin(mongooseHistory);
 
 module.exports = customer;
