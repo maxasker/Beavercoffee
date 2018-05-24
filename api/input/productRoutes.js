@@ -8,7 +8,7 @@ const productController = require('../controllers/product.controller.js');
 function create (req, res) {
   let resCreate = res;
   let productId;
-  storageController.create(req.body)
+  productController.create(req.body)
   .then(function (result) {
     productId = result._id;
 

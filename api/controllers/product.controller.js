@@ -2,7 +2,7 @@
 const models = require('../../models');
 
 function create (data) {
-  const Product = new models.Product();
+  const Product = new models.Product(data);
   return Product.save();
 }
 
