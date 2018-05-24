@@ -4,7 +4,9 @@ const models = require('../../models');
 // Dependencies
 
 function create (data) {
-	data.history = {"role": data.current_role,  "end_date":null, "perc_fulltime":data.perc_fulltime}
+	var fulltime;
+	(data.perc_fulltime) ? fulltime = data.perc_fulltime : fulltime = 100;
+	data.history = {"role": data.current_role,  "end_date":null, "perc_fulltime":fulltime}
   const dataInput = new models.Employee(data);
   return dataInput.save();
 }
