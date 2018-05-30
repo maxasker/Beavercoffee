@@ -10,7 +10,7 @@ function seed () {
   .then(function () {
     return seedEmployees()
     .then(function () {
-      seedProducts()
+      return seedProducts()
       .then(function () {
         return Promise.resolve();
       });
