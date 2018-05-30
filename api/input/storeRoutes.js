@@ -1,6 +1,7 @@
 'use strict';
 
 const storeController = require('../controllers/store.Controller');
+const express = require('express');
 
 function createStore (req, res) {
   return storeController.create(req.body)
@@ -15,10 +16,11 @@ function createStore (req, res) {
 function findAllStores (req, res) {
   return storeController.findAll()
   .then(function (result) {
-    handleResponse(result);
+    console.log(result);
+    handleResponse(res, result);
   })
   .catch(function (err) {
-    handleError(err);
+    handleError(res, err);
   });
 }
 
@@ -28,7 +30,7 @@ function findOneStore (req, res) {
     handleResponse(result);
   })
   .catch(function (err) {
-    handleError(err);
+    handleError(res, err);
   });
 }
 
@@ -39,7 +41,7 @@ const handleError = (res, err) => {
 
 // Response handler
 const handleResponse = (res, result) => {
-  res.send(result);
+  return res.send(result);
 };
 
 module.exports = {
