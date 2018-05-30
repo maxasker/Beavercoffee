@@ -6,22 +6,9 @@ const productController = require('../controllers/product.controller.js');
 
 //create new product
 function create (req, res) {
-  let resCreate = res;
-  let productId;
-  productController.create(req.body)
-  .then(function (result) {
-    productId = result._id;
-
-    return storeController.findOne(req.params.storeId)
-    .then(function (results) {
-      return storageController.addProduct(results.storage, productId)
-      .then(function () {
-        return productController.findOne(productId)
-        .then(function (results) {
-          handleResponse(res, results);
-        });
-      });
-    });
+  productController.create(req.body, req.pamars.storeId)
+  .then(function (results) {
+    handleResponse(res, results);
   })
   .catch(function (err) {
     handleError(res, err);
@@ -30,7 +17,6 @@ function create (req, res) {
 
 //find product
 function findOne (req, res) {
-
   models.Product.findById(req.params.productId)
   .then(function (result) {
     handleResponse(res, result);
@@ -42,9 +28,8 @@ function findOne (req, res) {
 
 // update amount
 function update (req, res) {
-     models.Product.findOneAndUpdate(
-         {_id:req.params.productId}, {total_amount:req.body})
-    .then(function (result) {
+  models.Product.findOneAndUpdate({_id: req.params.productId}, {total_amount: req.body})
+  .then(function (result) {
     handleResponse(res, result);
   })
   .catch(function (err) {

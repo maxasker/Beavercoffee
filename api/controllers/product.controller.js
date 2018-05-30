@@ -1,9 +1,18 @@
 'use strict';
 const models = require('../../models');
+const storageController = require('./storage.controller.js');
 
-function create (data) {
+function create (data, storage) {
+  let productId;
   const Product = new models.Product(data);
-  return Product.save();
+  return Product.save()
+  .then(function (res) {
+    productId = res._id;
+    return storageController.addProduct(storage, res._id)
+    .then(function () {
+      return findOne(productId);
+    });
+  });
 }
 
 function findAll () {
