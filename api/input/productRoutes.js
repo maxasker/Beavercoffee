@@ -6,7 +6,7 @@ const productController = require('../controllers/product.controller.js');
 
 //create new product
 function create (req, res) {
-  productController.create(req.body, req.pamars.storeId)
+  productController.create(req.body, req.params.storeId)
   .then(function (results) {
     handleResponse(res, results);
   })
@@ -17,9 +17,9 @@ function create (req, res) {
 
 //find product
 function findOne (req, res) {
-  models.Product.findById(req.params.productId)
-  .then(function (result) {
-    handleResponse(res, result);
+    productController.findOne(req.params.productId)
+  .then(function (results) {
+    handleResponse(res, results);
   })
   .catch(function (err) {
     handleError(res, err);
@@ -28,7 +28,7 @@ function findOne (req, res) {
 
 // update amount
 function update (req, res) {
-  models.Product.findOneAndUpdate({_id: req.params.productId}, {total_amount: req.body})
+    productController.updateAmount(req.params.productId, req.body.total_amount)
   .then(function (result) {
     handleResponse(res, result);
   })

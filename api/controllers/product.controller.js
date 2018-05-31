@@ -23,8 +23,8 @@ function findOne (id) {
   return models.Product.findById(id);
 }
 
-function updateAmount (id) {
-
+function updateAmount (id, amount) {
+    return models.Product.findOneAndUpdate({_id: id}, {quantity: {total_amount: amount}});
 }
 
 module.exports = {
