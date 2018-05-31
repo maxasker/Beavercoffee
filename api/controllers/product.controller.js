@@ -2,6 +2,7 @@
 const models = require('../../models');
 const storageController = require('./storage.controller.js');
 
+//data = req.body, storage = req.params.storeId
 function create (data, storage) {
   let productId;
   const Product = new models.Product(data);

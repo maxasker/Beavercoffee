@@ -1,8 +1,9 @@
 'use strict';
 const models = require('../../models');
 
-function create () {
-  const Order = new models.Order();
+function create (data, storage) {
+
+  const Order = new models.Order(data);
   return Order.save();
 }
 
@@ -14,8 +15,13 @@ function findOne (id) {
   return models.Order.findById(id);
 }
 
+function deleteOne (id) {
+
+}
+
 module.exports = {
   create,
   findAll,
-  findOne
+  findOne,
+    deleteOne
 };
