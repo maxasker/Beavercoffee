@@ -39,6 +39,10 @@ router.put('/products/:productId', productRoutes.update);
 // update beverages for customr
 router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
 
+//orders:
+router.post('/:storeId/orders/', orderRoutes.create);
+router.get('/orders/:orderId', orderRoutes.findOne);
+
 module.exports = {
   router
 };
