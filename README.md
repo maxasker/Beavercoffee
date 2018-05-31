@@ -2,6 +2,7 @@
 
 ## POST /[storeId]/employees
 - **URL params**
+
 	storeId *(required)*
 - **Data params**
 
@@ -9,14 +10,14 @@
 	- current_role
 
 	**JSON:**
-	```json
+	```javascript
 	{
 		"current_role": String,
 		"name": String,
 		"social_security": Number,
 	}
 
-	
+	```	
 
 
 
