@@ -21,6 +21,7 @@ const orderSchema = new mongoose.Schema({
       ref: 'Menu_item'},
     quantity: Number
   }]
+    //price : { $sum: '$numbers' }
 });
 
 const Order = mongoose.model('Order', orderSchema);

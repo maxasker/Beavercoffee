@@ -1,28 +1,26 @@
 'use strict';
 const models = require('../../models');
-const orderController = require('../controllers/order.controller.js');
+const controller = require('../controllers/reportController.js');
 
-//create new order
-function create (req, res){
-    orderController.create(req.body)
-  .then(function (results) {
+
+function employees(req, res) {
+	controller.employees(req.body)
+	.then(function(results) {
+		handleResponse(res, results);
+	})
+	.catch(function (err) {
+		handleError(res, err);
+	});
+}
+
+function orders(req, res) {
+	controller.orders(req.body)
+  .then(function(results) {
     handleResponse(res, results);
   })
   .catch(function (err) {
     handleError(res, err);
   });
-}
-
-
-
-
-function findOne (){
-
-}
-
-
-function deleteOne(){
-
 }
 
 // Error handler
@@ -36,9 +34,6 @@ const handleResponse = (res, result) => {
 };
 
 module.exports = {
-  create,
-	findOne,
-  //  listAll,
-    deleteOne,
-//    update
+	employees,
+	orders
 }

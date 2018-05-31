@@ -1,8 +1,16 @@
 'use strict';
 const models = require('../../models');
 
-function create () {
-  const Order = new models.Order();
+function create (data) {
+    let menu_items = data.items;
+    var sum = 0.00;
+
+    menu_items.forEach(function(item){
+        sum = sum + parseInt(item.quantity);
+    });
+    data.price = sum;
+
+  const Order = new models.Order(data);
   return Order.save();
 }
 
@@ -14,8 +22,13 @@ function findOne (id) {
   return models.Order.findById(id);
 }
 
+function deleteOne (id) {
+
+}
+
 module.exports = {
   create,
   findAll,
-  findOne
+  findOne,
+    deleteOne
 };

@@ -1,14 +1,16 @@
 'use strict';
-
 const employeeRoutes = require('./employeeRoutes');
 const customerRoutes = require('./customerRoutes');
 const storeRoutes = require('./storeRoutes');
 const productRoutes = require('./productRoutes');
 const menuRoutes = require('./menuRoutes');
 const orderRoutes = require('./orderRoutes');
-
+const report = require('./reportRoutes');
 // const storageRoutes = require('./storageRoutes')
 const router = require('express').Router();
+
+router.post('/report/employees', report.employees);
+router.post('/report/orders', report.orders);
 
 router.post('/:storeId/employees/', employeeRoutes.create);
 router.get('/employees', employeeRoutes.findAll);
