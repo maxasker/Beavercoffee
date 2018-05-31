@@ -40,5 +40,5 @@ module.exports = {
 	findOne,
   //  listAll,
     deleteOne,
-    update
+//    update
 }
