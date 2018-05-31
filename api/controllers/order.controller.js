@@ -2,6 +2,7 @@
 const models = require('../../models');
 
 function create (data) {
+   // let test;
     let menu_items = data.items;
     var sum = 0.00;
 
