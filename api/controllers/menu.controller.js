@@ -12,6 +12,10 @@ function createMenuItem (data) {
   return MenuItem.save();
 }
 
+function getMenuItem (menuItemId) {
+  return models.MenuItem.findById(menuItemId);
+}
+
 function getAllMenuItems (storeId) {
   return models.Store.findById(storeId)
   .then(function (results) {
@@ -82,5 +86,6 @@ module.exports = {
   findOne,
   update,
   addMenuItem,
-  getAllMenuItems
+  getAllMenuItems,
+  getMenuItem
 };
