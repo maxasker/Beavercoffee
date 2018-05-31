@@ -4,8 +4,8 @@ const models = require('../../models');
 // Dependencies
 
 function employees(data) {
-	var start = new Date(data.sy, data.sm, data.sd);
-	var end = new Date(data.ey, data.em, data.ed);
+	var start = new Date(data.sy, data.sm-1, data.sd);
+	var end = new Date(data.ey, data.em-1, data.ed);
 	var rep = [];
 	return models.Employee.find()
 	.then(function(res) {
@@ -28,11 +28,30 @@ function employees(data) {
 	});
 }
 
+function orders(data) {
+	var start = new Date(data.sy, data.sm - 1, data.sd);
+  var end = new Date(data.ey, data.em-1, data.ed);
+  var rep = [];
+	
+	return models.Order.find()
+	.then(function(res) {
+		res.forEach(function (order) {
+			if(order.date <= end && order.date >= start){
+				rep.push(order)
+			}
+		});
+	})
+	.then(function(){
+		return rep;
+	});
+}
+
 const handleError = (res, err) => {
   return res.status(500).send(String(err));
 };
 
 module.exports = {
-	employees
+	employees,
+	orders
 };
 

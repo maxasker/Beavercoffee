@@ -3,7 +3,7 @@ const models = require('../../models');
 const controller = require('../controllers/reportController.js');
 
 
-function get(req, res) {
+function employees(req, res) {
 	controller.employees(req.body)
 	.then(function(results) {
 		handleResponse(res, results);
@@ -13,14 +13,14 @@ function get(req, res) {
 	});
 }
 
-
-function findOne (){
-
-}
-
-
-function deleteOne(){
-
+function orders(req, res) {
+	controller.orders(req.body)
+  .then(function(results) {
+    handleResponse(res, results);
+  })
+  .catch(function (err) {
+    handleError(res, err);
+  });
 }
 
 // Error handler
@@ -34,5 +34,6 @@ const handleResponse = (res, result) => {
 };
 
 module.exports = {
-	get
+	employees,
+	orders
 }
