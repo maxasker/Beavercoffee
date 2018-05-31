@@ -1,10 +1,9 @@
 'use strict';
 
-const storeController = require('../controllers/store.Controller');
-const express = require('express');
+const menuController = require('../controllers/store.Controller');
 
-function createStore (req, res) {
-  return storeController.create(req.body)
+function create (req, res) {
+  return menuController.create(req.body)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -13,8 +12,8 @@ function createStore (req, res) {
   });
 }
 
-function findAllStores (req, res) {
-  return storeController.findAll()
+function addMenuItem (req, res) {
+  return menuController.addMenuItem(req.body, req.params.storeId)
   .then(function (result) {
     handleResponse(res, result);
   })
@@ -23,8 +22,18 @@ function findAllStores (req, res) {
   });
 }
 
-function findOneStore (req, res) {
-  return storeController.findOne(req.params.storeId)
+function findAll (req, res) {
+  return menuController.findAll()
+  .then(function (result) {
+    handleResponse(res, result);
+  })
+  .catch(function (err) {
+    handleError(res, err);
+  });
+}
+
+function findOne (req, res) {
+  return menuController.findOne(req.params.storeId)
   .then(function (result) {
     handleResponse(result);
   })
@@ -44,7 +53,8 @@ const handleResponse = (res, result) => {
 };
 
 module.exports = {
-  createStore,
-  findAllStores,
-  findOneStore
+  create,
+  findAll,
+  findOne,
+  addMenuItem
 };
