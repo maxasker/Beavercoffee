@@ -4,6 +4,7 @@ const employeeRoutes = require('./employeeRoutes');
 const customerRoutes = require('./customerRoutes');
 const storeRoutes = require('./storeRoutes');
 const productRoutes = require('./productRoutes');
+const menuRoutes = require('./menuRoutes');
 
 // const storageRoutes = require('./storageRoutes')
 const router = require('express').Router();
@@ -35,6 +36,9 @@ router.post('/:storeId/products/', productRoutes.create);
 router.get('/products/:productId', productRoutes.findOne);
 router.get('/products', productRoutes.listAll);
 router.put('/products/:productId', productRoutes.update);
+
+// Menu:
+router.post('/:storeId/menu', menuRoutes.addMenuItem);
 
 // update beverages for customr
 router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
