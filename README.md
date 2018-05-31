@@ -1,6 +1,7 @@
 # Beavercoffee
 
 ## POST /[storeId]/employees
+Add a new employee
 - **URL params**
 
 	storeId *(required)*
@@ -9,7 +10,7 @@
 	**Required:**
 	- current_role
 
-	**JSON:**
+	**Body:**
 	```javascript
 	{
 		"current_role": String,
@@ -24,6 +25,6 @@
 		"perc_fulltime": Number	
   	}	
 	```	
-
-
+## GET /employees
+Get all employees
 
