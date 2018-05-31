@@ -1,7 +1,7 @@
 # Beavercoffee
 
 ## POST /[storeId]/employees
-Add a new employee
+Adds a new employee
 - **URL params**
 
 	storeId *(required)*
@@ -26,5 +26,43 @@ Add a new employee
   	}	
 	```	
 ## GET /employees
-Get all employees
+Returs all employees
+- **URL params**
 
+	None
+- **Data params**
+
+	None
+
+## GET /employees/[employeeId]
+Returns a single employee
+- **URL params**
+
+        employeeId *(required)*
+- **Data params**
+
+	None
+
+## PUT /employees/[employeeId]
+Updates an employee
+
+- **URL params**
+
+	employeeId *(required)*
+- **Data params**
+
+	**Body:**
+	 ```javascript
+        {       
+                "current_role": String,
+                "name": String,
+                "social_security": Number,
+                "address": {
+                        "street_name": String,
+                        "city": String,
+                        "country": String,
+                        "zipcode": Number
+                },
+                "perc_fulltime": Number
+        }
+        ```	
