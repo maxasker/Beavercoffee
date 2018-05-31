@@ -39,7 +39,7 @@ Returns a single employee
 
 - **URL params**
 
-        employeeId *(required)*
+	employeeId *(required)*
 - **Data params**
 
 	None
@@ -67,3 +67,5 @@ Updates an employee
                 "perc_fulltime": Number
         }
         ```	
+	
+
