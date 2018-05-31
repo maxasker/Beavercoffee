@@ -2,15 +2,17 @@
 const mongoose = require('mongoose');
 
 const menuSchema = new mongoose.Schema({
-  menu_item: String,
-  price: Number,
-  ingredients: [{
-    product: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product'
-    },
-    amount: Number,
-    metric: String
+  menu_items: [{
+    name: String,
+    price: Number,
+    ingredients: [{
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+      },
+      amount: Number,
+      metric: String
+    }]
   }]
 });
 
