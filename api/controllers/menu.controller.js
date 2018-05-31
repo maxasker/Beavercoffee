@@ -12,6 +12,15 @@ function createMenuItem (data) {
   return MenuItem.save();
 }
 
+function getAllMenuItems (storeId) {
+  return models.Store.findById(storeId)
+  .then(function (results) {
+    return models.Menu.findById(results.menu)
+    .then(function (result) {
+      console.log(result);
+    });
+  });
+}
 function linkToMenu (menuItemId, menuId) {
   const updateData = {};
   updateData['menu_items'] = menuItemId;
@@ -61,8 +70,11 @@ function findAll () {
   return models.Menu.find();
 }
 
-function findOne (id) {
-  return models.Menu.findById(id);
+function findOne (storeId) {
+  return models.Store.findById(storeId)
+  .then(function (res) {
+    return res.menu;
+  });
 }
 
 module.exports = {
@@ -70,5 +82,6 @@ module.exports = {
   findAll,
   findOne,
   update,
-  addMenuItem
+  addMenuItem,
+  getAllMenuItems
 };
