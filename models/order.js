@@ -16,9 +16,10 @@ const orderSchema = new mongoose.Schema({
     default: (new Date())
   },
   items: [{
-    menu_item: String,
-    quantity: Number,
-    itemprice: Number
+    menu_item: {
+        type: mongoose.Schema.Types.ObjectId,
+      ref: 'Menu_item'}
+    quantity: Number
   }]
 });
 
