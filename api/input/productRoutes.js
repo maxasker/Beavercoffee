@@ -6,7 +6,7 @@ const productController = require('../controllers/product.controller.js');
 
 //create new product
 function create (req, res) {
-  productController.create(req.body, req.pamars.storeId)
+  productController.create(req.body, req.params.storeId)
   .then(function (results) {
     handleResponse(res, results);
   })
