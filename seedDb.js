@@ -35,13 +35,6 @@ function createMenuItems (products, storeId) {
     if (menuItems[i]['name'] === 'Hot Chocolate') {
       menuItems[i]['ingredients'].push(
         {
-          'product': products['Whole Milk'],
-          'amount': '0.3',
-          'metric': 'l'
-        }
-      );
-      menuItems[i]['ingredients'].push(
-        {
           'product': products['Cocoa Mix'],
           'amount': '0.1',
           'metric': 'kg'
@@ -54,6 +47,62 @@ function createMenuItems (products, storeId) {
           'amount': '0.1',
           'metric': 'l'
         }
+      );
+    } else if (menuItems[i]['name'] === 'Latte') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Espresso Roast'],
+          'amount': '0.1',
+          'metric': 'kg'
+        },
+      );
+    } else if (menuItems[i]['name'] === 'Skim Milk') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Skim Milk'],
+          'amount': '0.3',
+          'metric': 'l'
+        },
+      );
+    } else if (menuItems[i]['name'] === '2%Milk') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['2%Milk'],
+          'amount': '0.3',
+          'metric': 'l'
+        },
+      );
+    } else if (menuItems[i]['name'] === 'Soy Milk') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Soy Milk'],
+          'amount': '0.3',
+          'metric': 'l'
+        },
+      );
+    } else if (menuItems[i]['name'] === 'Vanilla Syrup') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Vanilla Syrup'],
+          'amount': '0.01',
+          'metric': 'l'
+        },
+      );
+    } else if (menuItems[i]['name'] === 'Caramel Syrup') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Caramel Syrups'],
+          'amount': '0.01',
+          'metric': 'l'
+        },
+      );
+    } else if (menuItems[i]['name'] === 'Irish Cream Syrup') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Skim Milk'],
+          'amount': '0.3',
+          'metric': 'kg'
+        },
       );
     }
   }
