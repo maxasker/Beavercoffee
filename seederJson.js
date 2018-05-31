@@ -31,6 +31,41 @@ function menuItems () {
       name: 'Whipped Cream',
       price: 5,
       ingredients: []
+    },
+    {
+      name: 'Latte',
+      price: 15,
+      ingredients: []
+    },
+    {
+      name: 'Skim Milk',
+      price: 0,
+      ingredients: []
+    },
+    {
+      name: '2%Milk',
+      price: 0,
+      ingredients: []
+    },
+    {
+      name: 'Soy Milk',
+      price: 0,
+      ingredients: []
+    },
+    {
+      name: 'Vanilla Syrup',
+      price: 0,
+      ingredients: []
+    },
+    {
+      name: 'Caramel Syrup',
+      price: 0,
+      ingredients: []
+    },
+    {
+      name: 'Irish Cream Syrup',
+      price: 0,
+      ingredients: []
     }
   ];
 }
