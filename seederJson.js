@@ -20,6 +20,21 @@ const roasts = ['Espresso Roast', 'Whole Bean French', 'Qhole Bean Ligt Roast'];
 const syrups = ['Vanilla Syrup', 'Caramel Syrup', 'Irish Cream Syrup'];
 const allProducts = [{cocoa: cocoa}, {milk: milk}, {roasts: roasts}, {syrups: syrups}];
 
+function menuItems () {
+  return [
+    {
+      name: 'Hot Chocolate',
+      price: 30,
+      ingredients: []
+    },
+    {
+      name: 'Whipped Cream',
+      price: 5,
+      ingredients: []
+    }
+  ];
+}
+
 function products () {
   let products = [];
   let i;
@@ -56,5 +71,6 @@ function products () {
 module.exports = {
   stores,
   employees,
-  products
+  products,
+  menuItems
 };
