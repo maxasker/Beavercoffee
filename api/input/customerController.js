@@ -12,20 +12,16 @@ function feedData (data) {
 
 // Customer put data (OBS ALL DATA)
 function updateData (customerId, bodyData) {
-    return models.Customer.findOneAndUpdate({_id:customerId}, {barcode:bodyData.barcode,
-        barcode:bodyData.barcode,
-        name:bodyData.name,
-        social_security:bodyData.social_security,
-        occupation:bodyData.occupation,
-        is_employee:bodyData.is_employee,
-        country:bodyData.country,
-        beverages:bodyData.beverages,
-        member_since: bodyData.member_since,
-        address: {street_name: bodyData.address.street_name,
-                 city: bodyData.address.city,
-                 country: bodyData.address.country,
-                 zipcode: bodyData.address.zipcode}
-});
+		var updates = {};
+	
+		Object.keys(bodyData).forEach(function(key) {
+				updates[key] = bodyData[key];
+		});
+
+		return models.Customer.findOneAndUpdate({_id:customerId},
+			{$set: updates,},
+			{new:true}
+		);
 }
 
 // Customer update beverages
