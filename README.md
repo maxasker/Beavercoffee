@@ -4,6 +4,7 @@
 - **URL params**
 	storeId *(required)*
 - **Data params**
+
 	**Required:**
 	- current_role
 
