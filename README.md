@@ -36,6 +36,7 @@ Returs all employees
 
 ## GET /employees/[employeeId]
 Returns a single employee
+
 - **URL params**
 
         employeeId *(required)*
