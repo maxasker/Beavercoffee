@@ -39,7 +39,6 @@ function addToMenu (data, menuId) {
   .then(function (results) {
     return linkToMenu(results._id, menuId)
     .then(function (result) {
-      console.log(result);
       return Promise.resolve(results);
     });
   });

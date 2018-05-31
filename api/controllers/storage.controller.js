@@ -12,7 +12,7 @@ function findAll () {
 }
 
 function findOne (id) {
-  return models.Store.findById(id);
+  return models.Storage.findById(id);
 }
 
 function addProduct (storage, productId) {

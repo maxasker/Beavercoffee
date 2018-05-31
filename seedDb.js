@@ -2,6 +2,7 @@
 const productController = require('./api/controllers/product.controller.js');
 const storeController = require('./api/controllers/store.Controller.js');
 const employeeController = require('./api/controllers/employeeController.js');
+const menuController = require('./api/controllers/menu.controller.js');
 const seedData = require('./seederJson.js');
 let storeIds = [];
 
@@ -12,10 +13,64 @@ function seed () {
     .then(function () {
       return seedProducts()
       .then(function () {
+        return seedMenuItems();
+      });
+    });
+  });
+}
+
+function seedMenuItems () {
+  let storePromises = storeIds.map(function (storeId) {
+    return productController.findAll(storeId)
+    .then(function (results) {
+      return createMenuItems(results, storeId);
+    });
+  });
+  return Promise.all(storePromises);
+}
+
+function createMenuItems (products, storeId) {
+  const menuItems = seedData.menuItems();
+  for (let i = 0; i < menuItems.length; i++) {
+    if (menuItems[i]['name'] === 'Hot Chocolate') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Whole Milk'],
+          'amount': '0.3',
+          'metric': 'l'
+        }
+      );
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Cocoa Mix'],
+          'amount': '0.1',
+          'metric': 'kg'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Whipped Cream') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Whipped Cream'],
+          'amount': '0.1',
+          'metric': 'l'
+        }
+      );
+    }
+  }
+  return addMenuItems(menuItems, storeId);
+}
+
+function addMenuItems (menuItems, storeId) {
+  let menuItemsPromises = menuItems.map(function (menuItem) {
+    return menuController.findOne(storeId)
+    .then(function (res) {
+      return menuController.addMenuItem(menuItem, storeId)
+      .then(function (res) {
         return Promise.resolve();
       });
     });
   });
+  Promise.all(menuItemsPromises);
 }
 
 function seedProducts () {
