@@ -3,7 +3,6 @@ const models = require('../../models');
 
 function create (data) {
    // let test;
-
   const Order = new models.Order(data);
   return Order.save();
 //  then(function (res)){
