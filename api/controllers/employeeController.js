@@ -68,18 +68,11 @@ function makeHistory(data) {
 }
 
 function updateFields(data) {
-	var objForUpdate = {};
-	if (data.body.name) objForUpdate.name = data.body.name;
-    if (data.body.current_role) objForUpdate.current_role = data.body.current_role;
-    if (data.body.perc_fulltime) objForUpdate.perc_fulltime = data.body.perc_fulltime;
-    if (data.body.social_security) objForUpdate.social_security = data.body.social_security;
-    if (data.body.address){
-      if (data.body.address.street_name) objForUpdate['address.street_name'] = data.body.address.street_name;
-      if (data.body.address.city) objForUpdate['address.city'] = data.body.address.city;
-      if (data.body.address.country) objForUpdate['address.country'] = data.body.address.country;
-      if (data.body.address.zipcode) objForUpdate['address.zipcode'] = data.body.address.zipcode;
-    } 
-	return objForUpdate;
+	var updates = {};
+	Object.keys(data.body).forEach(function(key) {
+        updates[key] = data.body[key];
+  });
+	return updates;
 }
 
 function makeUpdate(data) {
