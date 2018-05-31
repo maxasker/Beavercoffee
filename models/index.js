@@ -6,6 +6,7 @@ const Order = require('./order.js');
 const Product = require('./product.js');
 const Storage = require('./storage.js');
 const Store = require('./store.js');
+const MenuItem = require('./menu_item.js');
 
 module.exports = {
   Employee,
@@ -15,5 +16,6 @@ module.exports = {
   Order,
   Product,
   Storage,
-  Store
+  Store,
+  MenuItem
 };
