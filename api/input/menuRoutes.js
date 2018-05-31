@@ -1,6 +1,6 @@
 'use strict';
 
-const menuController = require('../controllers/store.Controller');
+const menuController = require('../controllers/menu.controller');
 
 function create (req, res) {
   return menuController.create(req.body)
