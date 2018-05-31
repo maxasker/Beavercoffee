@@ -1,6 +1,21 @@
 # Beavercoffee
 
-## Add employee
-- **URL**
+## POST /[storeId]/employees
+- **URL params**
+	storeId *(required)*
+- **Data params**
+	**Required:**
+	- current_role
 
-	/:storeId/employees
+	**JSON:**
+	```json
+	{
+		"current_role": String,
+		"name": String,
+		"social_security": Number,
+	}
+
+	
+
+
+
