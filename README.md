@@ -439,7 +439,7 @@ Returns a list of all orders made between the provided dates. If an employee is 
 		"end_day": Number,
 		"employee": String (employeeId),
 		"menu_items": [
-			Number (menuItemId)
+			String (menuItemId)
 		]
   	}	
 	```
