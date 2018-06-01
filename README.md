@@ -392,12 +392,12 @@ Returns a list of all employees who've worked between the provided dates
 - **Data params**
 
 	Required:
-		start_year
-		start_month
-		start_day
-		end_year
-		end_month
-		end_day
+		start_year,	
+		start_month,	
+		start_day,	
+		end_year,	
+		end_month,	
+		end_day	
 	
 	**Body:**
 	```javascript
@@ -421,11 +421,11 @@ Returns a list of all orders made between the provided dates. If an employee is 
 - **Data params**
 
 	Required:
-		start_year
-		start_month
-		start_day
-		end_year
-		end_month
+		start_year,	
+		start_month,	
+		start_day,	
+		end_year,	
+		end_month,	
 		end_day
 	
 	**Body:**
