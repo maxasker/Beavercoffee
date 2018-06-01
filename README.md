@@ -11,6 +11,10 @@
 	- [PUT /employees/{employeeId}](#putemp)
 	- [POST /employees/comments/{employeeId}](#postcomm)
 	- [GET /employees/comments/{employeeId}](#getcomm)
+- Customers
+	- [POST /customer](#postcust)
+	- [GET /customer/{customerId}](#getcust)
+	- [PUT /customer/{customerId}](#putcust)
 
 
 ## <a name="poststore">POST /store</a>
@@ -145,7 +149,7 @@ Post a comment about an employee
   	}	
 	```
 	
-## GET <a name="getcomm">/employees/comments/{employeeId}</a>
+## <a name="getcomm">GET /employees/comments/{employeeId}</a>
 Returns all comments about an employee
 
 - **URL params**
@@ -155,4 +159,9 @@ Returns all comments about an employee
 
 	None
 	
+## <a name="postcust">POST /customer</a>
+
+## <a name="getcust">GET /customer/{customerId}</a>
+
+## <a name="putcust">PUT /customer/{customerId}</a>
 
