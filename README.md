@@ -1,6 +1,9 @@
 # Beavercoffee
+Endpoints:
+	- [POST /:storeId/employees] (#post-/:storeId/employees)
+	- 
 
-## POST /[storeId]/employees
+## POST /:storeId/employees
 Adds a new employee
 - **URL params**
 
@@ -83,8 +86,17 @@ Post a comment about an employee
 	```javascript
 	{
 		"date": Date,
-		"text": String, *(required)*
+		"text": String, 
 		"author": String (employeeId)
   	}	
 	```
+	
+## GET /employees/comments/[employeeId]
+Returns all comments about an employee
+
+- **URL params**
+
+	employeeId - ID of employee
+- **Data params**
+	
 
