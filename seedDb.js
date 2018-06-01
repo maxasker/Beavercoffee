@@ -4,6 +4,7 @@ const storeController = require('./api/controllers/store.Controller.js');
 const employeeController = require('./api/controllers/employeeController.js');
 const menuController = require('./api/controllers/menu.controller.js');
 const seedData = require('./seederJson.js');
+const customerController = require('./api/controllers/customerController.js');
 let storeIds = [];
 
 function seed () {
@@ -13,10 +14,23 @@ function seed () {
     .then(function () {
       return seedProducts()
       .then(function () {
-        return seedMenuItems();
+        return seedMenuItems()
+        .then(function () {
+          return seedCustomers();
+        });
       });
     });
   });
+}
+
+function seedCustomers () {
+  let customerPromises = seedData.customers.map(function (customer) {
+    customerController.feedData(customer)
+    .then(function () {
+      return Promise.resolve();
+    });
+  });
+  return Promise.all(customerPromises);
 }
 
 function seedMenuItems () {
@@ -35,13 +49,6 @@ function createMenuItems (products, storeId) {
     if (menuItems[i]['name'] === 'Hot Chocolate') {
       menuItems[i]['ingredients'].push(
         {
-          'product': products['Whole Milk'],
-          'amount': '0.3',
-          'metric': 'l'
-        }
-      );
-      menuItems[i]['ingredients'].push(
-        {
           'product': products['Cocoa Mix'],
           'amount': '0.1',
           'metric': 'kg'
@@ -53,6 +60,70 @@ function createMenuItems (products, storeId) {
           'product': products['Whipped Cream'],
           'amount': '0.1',
           'metric': 'l'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Latte') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Espresso Roast'],
+          'amount': '0.1',
+          'metric': 'kg'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Capuccino') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Espresso Roast'],
+          'amount': '0.1',
+          'metric': 'kg'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Skim Milk') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Skim Milk'],
+          'amount': '0.3',
+          'metric': 'l'
+        }
+      );
+    } else if (menuItems[i]['name'] === '2%Milk') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['2%Milk'],
+          'amount': '0.3',
+          'metric': 'l'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Soy Milk') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Soy Milk'],
+          'amount': '0.3',
+          'metric': 'l'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Vanilla Syrup') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Vanilla Syrup'],
+          'amount': '0.01',
+          'metric': 'l'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Caramel Syrup') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Caramel Syrups'],
+          'amount': '0.01',
+          'metric': 'l'
+        }
+      );
+    } else if (menuItems[i]['name'] === 'Irish Cream Syrup') {
+      menuItems[i]['ingredients'].push(
+        {
+          'product': products['Skim Milk'],
+          'amount': '0.3',
+          'metric': 'kg'
         }
       );
     }
