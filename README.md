@@ -1,5 +1,9 @@
 # Beavercoffee
 # Endpoints
+- Stores
+	- [POST /store](#poststore)
+	- [GET /store](#getstores)
+	- [GET /store/{storeId}](#getstore)
 - Employees
 	- [POST /{storeId}/employees](#postemp)
 	- [GET /employees](#getemps)
@@ -9,6 +13,50 @@
 	- [GET /employees/comments/{employeeId}](#getcomm)
 
 
+## <a name="poststore">POST /store</a>
+Create a new store
+
+- **URL params**
+
+	None
+- **Data params**
+
+	**Required:**
+	- name
+	
+	**Request body:**
+	```javascript
+	{
+		"name": String,
+		"location": {
+    			"street": String,
+    			"city": String,
+    			"country": String,
+    			"zipcode": Number
+		}	
+  	}	
+	```
+	
+## <a name="getstores">GET /store</a>
+Return all stores
+
+- **URL params**
+
+	None
+- **Data params**
+
+	None
+	
+## <a name="getstore">GET /store/{storeId}</a>
+Return one store
+
+- **URL params**
+
+	- storeid - ID of store
+- **Data params**
+
+	None
+	
 ## <a name="postemp">POST /{storeId}/employees</a>
 Adds a new employee
 - **URL params**
@@ -19,7 +67,7 @@ Adds a new employee
 	**Required:**
 	- current_role
 
-	**Body:**
+	**Request body:**
 	```javascript
 	{
 		"current_role": String,
