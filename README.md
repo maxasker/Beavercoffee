@@ -1,4 +1,17 @@
 # Beavercoffee
+# Installtion
+Clone the project:
+``git clone https://github.com/maxasker/Beavercoffee``
+
+Open the folder:
+``cd Beavercoffee``
+
+Install dependencies:
+``npm install``
+
+Start the preloaded server:
+``gulp serve``
+
 # Endpoints
 - Stores
 	- [POST /store](#poststore)
