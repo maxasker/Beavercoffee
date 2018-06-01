@@ -34,9 +34,14 @@ function getData (customerId) {
     return models.Customer.find({_id: customerId});
 }
 
+function getAllCustomers(){
+	return models.Customer.find();
+}
+
 module.exports = {
   feedData,
     getData,
     updateData,
-    updateBeverages
+    updateBeverages,
+	getAllCustomers
 };

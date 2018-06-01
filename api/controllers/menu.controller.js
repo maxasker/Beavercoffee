@@ -21,10 +21,21 @@ function getAllMenuItems (storeId) {
   .then(function (results) {
     return models.Menu.findById(results.menu)
     .then(function (result) {
-      console.log(result);
+      return listAllMenuItems(result.menu_items);
     });
   });
 }
+
+function listAllMenuItems (menuList) {
+  let menuItemPromises = menuList.map(function (menuItem) {
+    return getMenuItem(menuItem)
+    .then(function (res) {
+      return Promise.resolve(res);
+    });
+  });
+  return Promise.all(menuItemPromises);
+}
+
 function linkToMenu (menuItemId, menuId) {
   const updateData = {};
   updateData['menu_items'] = menuItemId;

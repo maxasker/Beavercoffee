@@ -32,6 +32,7 @@ router.get('/store:storeId', storeRoutes.findOneStore);
 // customer:
 router.post('/customer', customerRoutes.input);
 router.get('/customer/:customerId', customerRoutes.getCustomer);
+router.get('/customer', customerRoutes.getCustomers);
 router.put('/customer/:customerId', customerRoutes.updateCustomer);
 // update beverages for customr
 router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
@@ -44,9 +45,9 @@ router.put('/products/:productId', productRoutes.update);
 
 // Menu:
 router.post('/:storeId/menu', menuRoutes.addMenuItem);
+router.get('/:storeId/menu', menuRoutes.getMenuItems);
 
-
-//orders:
+// orders:
 router.post('/:storeId/orders/', orderRoutes.create);
 router.get('/orders/:orderId', orderRoutes.findOne);
 

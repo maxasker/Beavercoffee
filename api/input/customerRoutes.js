@@ -14,6 +14,17 @@ function input (req, res) {
   });
 };
 
+//get all customers
+function getCustomers (req, res) {
+	return customerController.getAllCustomers()
+	.then(function (result) {
+    handleResponse(res, result);
+  })
+  .catch(function (err) {
+    handleError(res, err);
+  });
+};
+
 //get customer
 function getCustomer (req, res) {
      return customerController.getData(req.params.customerId)
@@ -61,5 +72,6 @@ module.exports = {
   input,
     getCustomer,
     updateCustomer,
-    updateBeverages
+    updateBeverages,
+getCustomers
 };
