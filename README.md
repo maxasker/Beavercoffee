@@ -15,6 +15,11 @@
 	- [POST /customer](#postcust)
 	- [GET /customer/{customerId}](#getcust)
 	- [PUT /customer/{customerId}](#putcust)
+- Products
+	- [POST /{storeId}/products/](#postprod)
+	- [GET /products](#getprods)
+	- [GET /products/{productId}](#getprod)
+	- [PUT /products/{productId}](#putprod)
 
 
 ## <a name="poststore">POST /store</a>
@@ -227,5 +232,66 @@ Updates a customer
   	}	
 	```
 
+## <a name="postprod">POST /{storeId}/products/</a>
+Creates a new product
 
+- **URL params**
+
+	storeId - ID of store
+	
+- **Data params**
+
+	Required: None
+	
+	**Body:**
+	```javascript
+	{
+		"name": String, 
+		"quantity": {
+                        "metric": String,
+                        "total_amount": Number,
+                        "pkg_amount": Number
+                }
+  	}	
+	```
+
+## <a name="getprods">GET /products</a>
+Returns all products
+
+- **URL params**
+
+	None
+- **Data params**
+
+	None
+	
+## <a name="getprod">GET /products/{productId}</a>
+
+- **URL params**
+
+	productId - ID of product
+- **Data params**
+
+	None
+	
+## <a name="putprod">PUT /products/{productId}</a>
+
+- **URL params**
+
+	productId - ID of product
+- **Data params**
+
+	Required: None
+	
+	**Body:**
+	```javascript
+	{
+		"name": String, 
+		"quantity": {
+                        "metric": String,
+                        "total_amount": Number,
+                        "pkg_amount": Number
+                }
+  	}	
+	```
 
