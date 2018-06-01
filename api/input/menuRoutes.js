@@ -22,6 +22,16 @@ function addMenuItem (req, res) {
   });
 }
 
+function getMenuItems (req, res) {
+  return menuController.getAllMenuItems(req.params.storeId)
+  .then(function (result) {
+    handleResponse(res, result);
+  })
+  .catch(function (err) {
+    handleError(res, err);
+  });
+}
+
 function findAll (req, res) {
   return menuController.findAll()
   .then(function (result) {
@@ -56,5 +66,6 @@ module.exports = {
   create,
   findAll,
   findOne,
-  addMenuItem
+  addMenuItem,
+  getMenuItems
 };

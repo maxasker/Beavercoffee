@@ -44,9 +44,9 @@ router.put('/products/:productId', productRoutes.update);
 
 // Menu:
 router.post('/:storeId/menu', menuRoutes.addMenuItem);
+router.get('/:storeId/menu', menuRoutes.getMenuItems);
 
-
-//orders:
+// orders:
 router.post('/:storeId/orders/', orderRoutes.create);
 router.get('/orders/:orderId', orderRoutes.findOne);
 
