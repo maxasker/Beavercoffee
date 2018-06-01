@@ -9,8 +9,8 @@
 	- [GET /employees](#getemps)
 	- [GET /employees/{employeeId}](#getemp)
 	- [PUT /employees/{employeeId}](#putemp)
-	- [POST /employees/comments/{employeeId}](#postcomm)
-	- [GET /employees/comments/{employeeId}](#getcomm)
+	- [POST /employees/{employeeId}/comments](#postcomm)
+	- [GET /employees/{employeeId}/comments](#getcomm)
 - Customers
 	- [POST /customer](#postcust)
 	- [GET /customer/{customerId}](#getcust)
