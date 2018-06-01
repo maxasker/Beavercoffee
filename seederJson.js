@@ -33,6 +33,7 @@ const employees = [{
 }];
 
 const customers = [{
+  barcode: 1,
   name: 'Alma',
   social_security: 1234567890,
   occupation: 'Professional customer',
@@ -47,6 +48,7 @@ const customers = [{
   }
 },
   {
+    barcode: 2,
     name: 'Madeleine',
     social_security: 1234432112,
     occupation: 'Professional Orange',
