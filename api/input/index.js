@@ -32,6 +32,7 @@ router.get('/store:storeId', storeRoutes.findOneStore);
 // customer:
 router.post('/customer', customerRoutes.input);
 router.get('/customer/:customerId', customerRoutes.getCustomer);
+router.get('/customer', customerRoutes.getCustomers);
 router.put('/customer/:customerId', customerRoutes.updateCustomer);
 // update beverages for customr
 router.put('/customer/:customerId/beverages/', customerRoutes.updateBeverages);
