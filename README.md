@@ -25,8 +25,7 @@ Create a new store
 	None
 - **Data params**
 
-	**Required:**
-	- name
+	Required: name
 	
 	**Request body:**
 	```javascript
@@ -68,8 +67,7 @@ Adds a new employee
 	storeId - ID of store
 - **Data params**
 
-	**Required:**
-	- current_role
+	Required: current_role
 
 	**Request body:**
 	```javascript
@@ -137,8 +135,7 @@ Post a comment about an employee
 	employeeId - ID of employee
 - **Data params**
 
-	**Required:**
-	- text
+	Required: text
 	
 	**Body:**
 	```javascript
@@ -160,8 +157,75 @@ Returns all comments about an employee
 	None
 	
 ## <a name="postcust">POST /customer</a>
+Creates a new customer
 
+- **URL params**
+
+	None
+	
+- **Data params**
+
+	Required: None
+	
+	**Body:**
+	```javascript
+	{
+		"barcode": Number,
+		"name": String, 
+		"social_security": Number,
+		"occupation": String,
+  		"is_employee": Boolean,
+  		"country": String,
+  		"beverages": Number,
+		"address": {
+                        "street_name": String,
+                        "city": String,
+                        "country": String,
+                        "zipcode": Number
+                },
+		"member_since": Date
+  	}	
+	```
 ## <a name="getcust">GET /customer/{customerId}</a>
+Returns a single customer
+
+- **URL params**
+	
+	customerId - ID of customer
+- **Data params**
+
+	None
 
 ## <a name="putcust">PUT /customer/{customerId}</a>
+Updates a customer
+
+- **URL params**
+
+	customerId - ID of customer
+	
+- **Data params**
+
+	Required: None
+	
+	**Body:**
+	```javascript
+	{
+		"barcode": Number,
+		"name": String, 
+		"social_security": Number,
+		"occupation": String,
+  		"is_employee": Boolean,
+  		"country": String,
+  		"beverages": Number,
+		"address": {
+                        "street_name": String,
+                        "city": String,
+                        "country": String,
+                        "zipcode": Number
+                },
+		"member_since": Date
+  	}	
+	```
+
+
 
