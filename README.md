@@ -1,9 +1,9 @@
 # Beavercoffee
 Endpoints:
-	- [POST /:storeId/employees] (#post-/:storeId/employees)
+	- [POST /{storeId}/employees] (#postemp)
 	- 
 
-## POST /:storeId/employees
+## <a name="postemp">POST /{storeId}/employees</a>
 Adds a new employee
 - **URL params**
 
