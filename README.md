@@ -23,6 +23,7 @@
 	- [PUT /products/{productId}](#putprod)
 - Menu
 	- [POST /{storeId}/menu](#postmenu)
+	- [GET /{storeId}/menu](#getmenu)
 - Orders
 	- [POST /{storeId}/orders](#postord)
 	- [GET /orders/{orderId}](#getord)
@@ -347,7 +348,19 @@ Creates a new menu item
 		}]
   	}	
 	```
+	
+## <a name="getmenu">GET /{storeId}/menu</a>
+Returns all menu items in a store
 
+- **URL params**
+
+	storeId - ID of store
+	
+- **Data params**
+
+	None
+	
+	
 ## <a name="postord">POST /{storeId}/orders</a>
 Creates a new order
 
