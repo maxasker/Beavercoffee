@@ -21,6 +21,8 @@
 	- [GET /products](#getprods)
 	- [GET /products/{productId}](#getprod)
 	- [PUT /products/{productId}](#putprod)
+- Menu
+	- [POST /{storeId}/menu](#postmenu)
 - Orders
 	- [POST /{storeId}/orders](#postord)
 	- [GET /orders/{orderId}](#getord)
@@ -319,6 +321,29 @@ Updates a product
   	}	
 	```
 
+## <a name="postmenu">POST /{storeId/menu</a>
+Creates a new menu item
+
+- **URL params**
+
+	storeId - ID of store
+	
+- **Data params**
+
+	Required: None
+	
+	**Body:**
+	```javascript
+	{
+  		"name": String,
+ 		"price": Number,
+  		"ingredients": [{
+    			"product": String, (productId)
+    			"amount": Number,
+    			"metric": String
+		}]
+  	}	
+	```
 ## <a name="postord">POST /{storeId}/orders</a>
 Creates a new order
 
