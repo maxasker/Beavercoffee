@@ -1,5 +1,5 @@
 # Beavercoffee
-# Installtion
+# Installation
 Clone the project:
 ``git clone https://github.com/maxasker/Beavercoffee``
 
