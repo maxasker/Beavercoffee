@@ -1,7 +1,13 @@
 # Beavercoffee
-Endpoints:
-	- [POST /{storeId}/employees] (#postemp)
-	- 
+# Endpoints
+- Employees
+	- [POST /{storeId}/employees](#postemp)
+	- [GET /employees](#getemps)
+	- [GET /employees/{employeeId}](#getemp)
+	- [PUT /employees/{employeeId}](#putemp)
+	- [POST /employees/comments/{employeeId}](#postcomm)
+	- [GET /employees/comments/{employeeId}](#getcomm)
+
 
 ## <a name="postemp">POST /{storeId}/employees</a>
 Adds a new employee
@@ -28,7 +34,7 @@ Adds a new employee
 		"perc_fulltime": Number	
   	}	
 	```	
-## GET /employees
+## <a name="getemps">GET /employees</a>
 Returs all employees
 - **URL params**
 
@@ -37,7 +43,7 @@ Returs all employees
 
 	None
 
-## GET /employees/[employeeId]
+## <a name="getemp">GET /employees/{employeeId}</a>
 Returns a single employee
 
 - **URL params**
@@ -47,7 +53,7 @@ Returns a single employee
 
 	None
 
-## PUT /employees/[employeeId]
+## <a name="putemp">PUT /employees/{employeeId}</a>
 Updates an employee
 
 - **URL params**
@@ -71,7 +77,7 @@ Updates an employee
         }
         ```	
 	
-## POST /employees/comments/[employeeId]
+## <a name="postcomm">POST /employees/comments/{employeeId}</a>
 Post a comment about an employee
 
 - **URL params**
@@ -91,12 +97,14 @@ Post a comment about an employee
   	}	
 	```
 	
-## GET /employees/comments/[employeeId]
+## GET <a name="getcomm">/employees/comments/{employeeId}</a>
 Returns all comments about an employee
 
 - **URL params**
 
 	employeeId - ID of employee
 - **Data params**
+
+	None
 	
 
