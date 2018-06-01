@@ -14,10 +14,10 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-	perc_fulltime: {
-		type: Number,
-		default: 100
-	},
+  perc_fulltime: {
+    type: Number,
+    default: 100
+  },
   comments: [{
     date: {
       type: Date,

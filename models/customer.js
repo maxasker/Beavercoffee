@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const customerSchema = new mongoose.Schema({
   barcode: {
     type: Number,
-    required: true
+    required: true,
+    unique: true
   },
   name: {
     type: String,
@@ -17,7 +18,10 @@ const customerSchema = new mongoose.Schema({
     required: true
   },
   country: String,
-  beverages: Number,
+  beverages: {
+    type: Number,
+    default: 0
+  },
   member_since: {
     type: Date,
     default: (new Date())
