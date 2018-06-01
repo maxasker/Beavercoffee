@@ -4,7 +4,7 @@
 Adds a new employee
 - **URL params**
 
-	storeId *(required)*
+	storeId - ID of store
 - **Data params**
 
 	**Required:**
@@ -39,7 +39,7 @@ Returns a single employee
 
 - **URL params**
 
-	employeeId *(required)*
+	employeeId - ID of employee
 - **Data params**
 
 	None
@@ -49,7 +49,7 @@ Updates an employee
 
 - **URL params**
 
-	employeeId *(required)*
+	employeeId - ID of employee
 - **Data params**
 
 	**Body:**
@@ -68,4 +68,23 @@ Updates an employee
         }
         ```	
 	
+## POST /employees/comments/[employeeId]
+Post a comment about an employee
+
+- **URL params**
+
+	employeeId - ID of employee
+- **Data params**
+
+	**Required:**
+	- text
+	
+	**Body:**
+	```javascript
+	{
+		"date": Date,
+		"text": String, *(required)*
+		"author": String (employeeId)
+  	}	
+	```
 
