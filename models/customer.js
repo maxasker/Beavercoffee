@@ -2,13 +2,26 @@
 const mongoose = require('mongoose');
 
 const customerSchema = new mongoose.Schema({
-  barcode: Number,
-  name: String,
+  barcode: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
   social_security: Number,
   occupation: String,
-  is_employee: Boolean,
+  is_employee: {
+    type: Boolean,
+    required: true
+  },
   country: String,
-  beverages: Number,
+  beverages: {
+    type: Number,
+    default: 0
+  },
   member_since: {
     type: Date,
     default: (new Date())
