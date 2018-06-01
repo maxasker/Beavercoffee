@@ -26,6 +26,9 @@
 - Orders
 	- [POST /{storeId}/orders](#postord)
 	- [GET /orders/{orderId}](#getord)
+- Reports
+	- [POST /report/employees](#emprep)
+	- [POST /report/orders](#ordrep)
 
 
 ## <a name="poststore">POST /store</a>
@@ -378,3 +381,62 @@ Returns a single order
 - **Data params**
 
 	None
+	
+## <a name="emprep">POST /report/employees</a>
+Returns a list of all employees who've worked between the provided dates
+
+- **URL params**
+
+	None
+	
+- **Data params**
+
+	Required:
+		start_year,	
+		start_month,	
+		start_day,	
+		end_year,	
+		end_month,	
+		end_day	
+	
+	**Body:**
+	```javascript
+	{
+		"start_year": Number,
+		"start_month": Number,
+		"start_day": Number,
+		"end_year": Number,
+		"end_month": Number,
+		"end_day": Number
+  	}	
+	```
+	
+## <a name="ordrep">POST /report/orders</a>
+Returns a list of all orders made between the provided dates. If an employee is provided in the request body only orders handled by that employee is returned.
+
+- **URL params**
+
+	None
+	
+- **Data params**
+
+	Required:
+		start_year,	
+		start_month,	
+		start_day,	
+		end_year,	
+		end_month,	
+		end_day
+	
+	**Body:**
+	```javascript
+	{
+		"start_year": Number,
+		"start_month": Number,
+		"start_day": Number,
+		"end_year": Number,
+		"end_month": Number,
+		"end_day": Number,
+		"employee": String (employeeId)
+  	}	
+	```

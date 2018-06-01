@@ -13,9 +13,7 @@ const seeder = require('./seedDb.js');
 console.log('Trying to connect to local database...');
 mongoose.connect('mongodb://localhost/BeaverCoffee', function (err, db) {
   if (err) { console.log(err); }
-<<<<<<< HEAD
-    initServer();
-    /*
+  /*
   db.dropDatabase()
   .then(function () {
     console.log('Seeding DB...');
@@ -23,19 +21,11 @@ mongoose.connect('mongodb://localhost/BeaverCoffee', function (err, db) {
     .then(function () {
       console.log('Seeding completed.');
       initServer();
-    }); */
-//  });
-=======
-  //db.dropDatabase()
-  //.then(function () {
-    //console.log('Seeding DB...');
-    //seeder.seed()
-    //.then(function () {
-      //console.log('Seeding completed.');
-      initServer();
-    //});
-  //});
->>>>>>> origin/master
+    });
+  });
+  */
+initServer();
+
 });
 
 
