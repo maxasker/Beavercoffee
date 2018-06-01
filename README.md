@@ -362,7 +362,7 @@ Creates a new order
 		"customer_id": String,
 		"date": Date,
 		"items": [{
-			"menu_item": String, (menuItemId)
+			"_id": String, (menuItemId)
                        	"quantity": Number
                 }]
   	}	
