@@ -15,11 +15,15 @@
 	- [POST /customer](#postcust)
 	- [GET /customer/{customerId}](#getcust)
 	- [PUT /customer/{customerId}](#putcust)
+	- [PUT /customer/{customerId}/beverages](#putbev)
 - Products
 	- [POST /{storeId}/products/](#postprod)
 	- [GET /products](#getprods)
 	- [GET /products/{productId}](#getprod)
 	- [PUT /products/{productId}](#putprod)
+- Orders
+	- [POST /{storeId}/orders](#postord)
+	- [GET /orders/{orderId}](#getord)
 
 
 ## <a name="poststore">POST /store</a>
@@ -231,6 +235,24 @@ Updates a customer
 		"member_since": Date
   	}	
 	```
+	
+## <a name="putbev">PUT /customer/{customerId}/beverages</a>
+Add beverages to customer
+
+- **URL params**
+
+	customerId - ID of customer
+	
+- **Data params**
+
+	Required: beverages
+	
+	**Body:**
+	```javascript
+	{
+  		"beverages": Number
+  	}	
+	```
 
 ## <a name="postprod">POST /{storeId}/products/</a>
 Creates a new product
@@ -266,6 +288,7 @@ Returns all products
 	None
 	
 ## <a name="getprod">GET /products/{productId}</a>
+Returns a single product
 
 - **URL params**
 
@@ -275,6 +298,7 @@ Returns all products
 	None
 	
 ## <a name="putprod">PUT /products/{productId}</a>
+Updates a product
 
 - **URL params**
 
@@ -295,3 +319,37 @@ Returns all products
   	}	
 	```
 
+## <a name="postord">POST /{storeId}/orders</a>
+Creates a new order
+
+- **URL params**
+
+	storeId - ID of store
+	
+- **Data params**
+
+	Required: None
+	
+	**Body:**
+	```javascript
+	{
+		"employeeId": String,
+		"customer_id": String,
+		"date": Date,
+		"items": [{
+			"menu_item": String, (menuItemId)
+                       	"quantity": Number
+                }]
+  	}	
+	```
+	
+## <a name="getord">GET /orders/{orderId}</a>
+Returns a single order
+
+- **URL params**
+
+	orderId - ID of order
+	
+- **Data params**
+
+	None
