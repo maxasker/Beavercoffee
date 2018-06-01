@@ -349,7 +349,7 @@ Creates a new menu item
   	}	
 	```
 	
-## <a name="getmenu">GET /{storeId/menu</a>
+## <a name="getmenu">GET /{storeId}/menu</a>
 Returns all menu items in a store
 
 - **URL params**
