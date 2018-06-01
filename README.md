@@ -412,7 +412,7 @@ Returns a list of all employees who've worked between the provided dates
 	```
 	
 ## <a name="ordrep">POST /report/orders</a>
-Returns a list of all orders made between the provided dates. If an employee is provided in the request body only orders handled by that employee is returned.
+Returns a list of all orders made between the provided dates. If an employee is provided in the request body only orders handled by that employee are returned. If one or more menu_items are provided only orders containing one or more of those items are returned. The request can **not** contain both menu_items and employee.
 
 - **URL params**
 
@@ -437,6 +437,9 @@ Returns a list of all orders made between the provided dates. If an employee is 
 		"end_year": Number,
 		"end_month": Number,
 		"end_day": Number,
-		"employee": String (employeeId)
+		"employee": String (employeeId),
+		"menu_items": [
+			Number (menuItemId)
+		]
   	}	
 	```
