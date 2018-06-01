@@ -43,6 +43,24 @@ function orders(data) {
 		})
 		.then(function(){
 			return rep;
+		})
+	}else if(data.menu_items){
+		return models.Order.find()
+		.then(function(orders){
+			orders.forEach(function(order){
+				var contains = false;
+				data.menu_items.forEach(function(item){
+					if(order.items.filter(i => i._id == item).length > 0) contains = true;
+					console.log('looking for item: ' + item);
+					console.log(contains);
+				});
+				if(contains){
+					rep.push(order)
+				}
+			});
+		})
+		.then(function(){
+			return rep;
 		});
 	}else {
 		return models.Order.find()
