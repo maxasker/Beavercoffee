@@ -13,7 +13,7 @@ function feedData (data) {
 // Customer put data (OBS ALL DATA)
 function updateData (customerId, bodyData) {
 		var updates = {};
-	
+
 		Object.keys(bodyData).forEach(function(key) {
 				updates[key] = bodyData[key];
 		});
@@ -34,6 +34,10 @@ function getData (customerId) {
     return models.Customer.find({_id: customerId});
 }
 
+function findAll () {
+  return models.Customer.find();
+}
+
 function getAllCustomers(){
 	return models.Customer.find();
 }
@@ -43,5 +47,6 @@ module.exports = {
     getData,
     updateData,
     updateBeverages,
-	getAllCustomers
+    getAllCustomers,
+    findAll
 };
