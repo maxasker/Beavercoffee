@@ -26,12 +26,12 @@ function updateData (customerId, bodyData) {
 
 // Customer update beverages
 function updateBeverages (customerId, dataNbr) {
-    return models.Customer.findOneAndUpdate({_id:customerId}, {beverages: dataNbr.beverages});
+    return models.Customer.findOneAndUpdate({_id:customerId}, {beverages: dataNbr});
 }
 
 //Customer get data
 function getData (customerId) {
-    return models.Customer.find({_id: customerId});
+    return models.Customer.findById(customerId);
 }
 
 module.exports = {

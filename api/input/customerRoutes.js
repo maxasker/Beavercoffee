@@ -49,7 +49,7 @@ function updateCustomer (req, res) {
 
 // update beverages
 function updateBeverages (req, res) {
-    return customerController.updateBeverages(req.params.customerId, req.body)
+    return customerController.updateBeverages(req.params.customerId, req.body.beverages)
   .then(function (result) {
     handleResponse(res, result);
   })
