@@ -27,13 +27,18 @@ function getAllMenuItems (storeId) {
 }
 
 function listAllMenuItems (menuList) {
+  let menuItemsIds = [];
   let menuItemPromises = menuList.map(function (menuItem) {
     return getMenuItem(menuItem)
     .then(function (res) {
-      return Promise.resolve(res);
+      menuItemsIds.push(res._id);
+      return Promise.resolve();
     });
   });
-  return Promise.all(menuItemPromises);
+  return Promise.all(menuItemPromises)
+  .then(function () {
+    return menuItemsIds;
+  });
 }
 
 function linkToMenu (menuItemId, menuId) {

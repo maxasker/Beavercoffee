@@ -5,7 +5,9 @@ const employeeController = require('./api/controllers/employeeController.js');
 const menuController = require('./api/controllers/menu.controller.js');
 const seedData = require('./seederJson.js');
 const customerController = require('./api/controllers/customerController.js');
+const orderController = require('./api/controllers/order.controller.js');
 let storeIds = [];
+let amountOfOrders = [0, 1, 2, 3];
 
 function seed () {
   return seedStores()
@@ -16,10 +18,57 @@ function seed () {
       .then(function () {
         return seedMenuItems()
         .then(function () {
-          return seedCustomers();
+          return seedCustomers()
+          .then(function () {
+            return seedOrders();
+          });
         });
       });
     });
+  });
+}
+
+function seedOrders () {
+  let storePromises = storeIds.map(function (storeId) {
+    return employeeController.findAll()
+    .then(function (res) {
+      let employeeIds = [];
+      res.forEach(function (employee) {
+        employeeIds.push(employee._id);
+      });
+      return customerController.findAll()
+      .then(function (results) {
+        let customerIds = [];
+        results.forEach(function (customer) {
+          customerIds.push(customer._id);
+        });
+        return generateOrders(employeeIds, customerIds, storeId);
+      });
+    });
+  });
+  return Promise.all(storePromises);
+}
+
+function generateOrders (employeeIds, customerIds, storeId) {
+  return menuController.getAllMenuItems(storeId)
+  .then(function (res) {
+    let orderPromises = customerIds.map(function (customer) {
+      let order = seedData.order();
+      order.employee_id = employeeIds[Math.floor(Math.random() * employeeIds.length)];
+      order.customer_id = customer;
+      let nbrOfOrders = (Math.floor(Math.random() * 6) + 1);
+      for (let i = 0; i < nbrOfOrders; i++) {
+        order.items.push({
+          type: res[Math.floor(Math.random() * res.length)],
+          quantity: 1
+        });
+      }
+      return orderController.create(order)
+      .then(function () {
+        return Promise.resolve();
+      });
+    });
+    return Promise.all(orderPromises);
   });
 }
 

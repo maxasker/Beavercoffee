@@ -18,17 +18,44 @@ const stores = [{
   }
 }];
 
+function order () {
+  return { items: [] };
+}
+
+/*
+{
+  'type': '5b100da8733c8e5315311df7',
+  'quantity': '1'
+}, {
+  'type': '5b100da8733c8e5315311dfc',
+  'quantity': '2'
+}, {
+  'type': '5b100da8733c8e5315311dfc',
+  'quantity': '3'
+}, {
+  'type': '5b100da8733c8e5315311dfc',
+  'quantity': '3'
+}, {
+  'type': '5b100da8733c8e5315311dfc',
+  'quantity': '3'
+}
+*/
+
 const employees = [{
   name: 'Max',
+  social_security: 1233211232,
   current_role: 'Diskpojke'
 }, {
   name: 'Robin',
+  social_security: 1233211231,
   current_role: 'Supreme leader'
 }, {
   name: 'Karolin',
+  social_security: 1233211233,
   current_role: 'President'
 }, {
   name: 'Madeleine',
+  social_security: 1233211234,
   current_role: 'Crazy catlady on the street outside'
 }];
 
@@ -49,9 +76,9 @@ const customers = [{
 },
   {
     barcode: 2,
-    name: 'Madeleine',
+    name: 'Karolin',
     social_security: 1234432112,
-    occupation: 'Professional Orange',
+    occupation: 'Systemutvecklare',
     is_employee: true,
     country: 'Sweden',
     beverages: 5,
@@ -60,6 +87,36 @@ const customers = [{
       city: 'Malmö',
       country: 'Sweden',
       zipcode: 21448
+    }
+  },
+  {
+    barcode: 3,
+    name: 'Pelle-Nicklas',
+    social_security: 1234432113,
+    occupation: 'Lawyer',
+    is_employee: true,
+    country: 'Sweden',
+    beverages: 3,
+    adress: {
+      street_name: 'DenTredjeGatan',
+      city: 'Malmö',
+      country: 'Sweden',
+      zipcode: 21145
+    }
+  },
+  {
+    barcode: 4,
+    name: 'Carola',
+    social_security: 1234432114,
+    occupation: 'Singer',
+    is_employee: true,
+    country: 'Sweden',
+    beverages: 7,
+    adress: {
+      street_name: 'DenFjärdeGatan',
+      city: 'Malmö',
+      country: 'Sweden',
+      zipcode: 21446
     }
   }
 ];
@@ -94,17 +151,17 @@ function menuItems () {
     },
     {
       name: 'Skim Milk',
-      price: 0,
+      price: 5,
       ingredients: []
     },
     {
       name: '2%Milk',
-      price: 0,
+      price: 5,
       ingredients: []
     },
     {
       name: 'Soy Milk',
-      price: 0,
+      price: 5,
       ingredients: []
     },
     {
@@ -163,5 +220,6 @@ module.exports = {
   employees,
   products,
   menuItems,
-  customers
+  customers,
+  order
 };
