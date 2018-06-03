@@ -12,15 +12,27 @@ let amountOfOrders = [0, 1, 2, 3];
 function seed () {
   return seedStores()
   .then(function () {
+    console.log('Seeded stores.');
     return seedEmployees()
     .then(function () {
+      console.log('Seeded employees.');
       return seedProducts()
       .then(function () {
+        console.log('Seeded products.');
         return seedMenuItems()
         .then(function () {
+          console.log('Seeded menu.');
           return seedCustomers()
           .then(function () {
-            return seedOrders();
+            console.log('Seeded customers.');
+            return setTimeout(function () {
+              return seedOrders()
+              .then(function () {
+                console.log('Seeded orders');
+                console.log('Seeding complete.');
+                return Promise.resolve();
+              });
+            }, 2000);
           });
         });
       });
@@ -30,7 +42,7 @@ function seed () {
 
 function seedOrders () {
   let storePromises = storeIds.map(function (storeId) {
-    return employeeController.findAll()
+    return employeeController.findAllPerStore(storeId)
     .then(function (res) {
       let employeeIds = [];
       res.forEach(function (employee) {
@@ -42,7 +54,10 @@ function seedOrders () {
         results.forEach(function (customer) {
           customerIds.push(customer._id);
         });
-        return generateOrders(employeeIds, customerIds, storeId);
+        return generateOrders(employeeIds, customerIds, storeId)
+        .then(function () {
+          return Promise.resolve();
+        });
       });
     });
   });

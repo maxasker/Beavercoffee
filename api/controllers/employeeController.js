@@ -15,6 +15,17 @@ function findAll(data) {
 	return models.Employee.find();
 }
 
+function findAllPerStore (storeId) {
+  let employeeIds = [];
+  return models.Store.findById(storeId)
+  .then(function (res) {
+    res.employees.forEach(function (employee) {
+      employeeIds.push(employee);
+    });
+    return Promise.resolve(employeeIds);
+  });
+}
+
 function findOne(data) {
 	return models.Employee.findById(data.params.employeeId);
 }
@@ -86,7 +97,7 @@ function makeUpdate(data) {
 				var setObj = {
 					$set: objForUpdate,
 				}
-   
+
 				return models.Employee.findOneAndUpdate(
           {_id: data.params.employeeId},
           setObj,
@@ -95,11 +106,11 @@ function makeUpdate(data) {
 			});
 	} else {
 		objForUpdate = updateFields(data);
-    
-    var setObj = { 
+
+    var setObj = {
       $set: objForUpdate,
     }
-    
+
     return models.Employee.findOneAndUpdate(
           {_id: data.params.employeeId},
           setObj,
@@ -135,6 +146,6 @@ module.exports = {
 	findOne,
 	makeUpdate,
 	makeComment,
-	getComments
+	getComments,
+	findAllPerStore
 };
-
