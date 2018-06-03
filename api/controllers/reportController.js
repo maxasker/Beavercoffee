@@ -28,14 +28,66 @@ function employees (data) {
   });
 }
 
-function customerZipCode () {
+function customerZipCode (data) {
+  let allOrders = [];
+  let allCustomers = [];
+  return models.Customer.find({'adress.zipcode': data.zipcode})
+  .then(function (res) {
+    res.forEach(function (customer) {
+      allCustomers.push(customer._id);
+    });
+    let orderPromises = allCustomers.map(function (customer) {
+      return models.Order.find({customer_id: customer})
+      .then(function (res) {
+        allOrders.push(res);
+        return Promise.resolve();
+      });
+    });
+    return Promise.all(orderPromises)
+    .then(function () {
+      return allOrders;
+    });
+  });
+}
 
+function customerOccupation (data) {
+  let allOrders = [];
+  let allCustomers = [];
+  return models.Customer.find({occupation: data.occupation})
+  .then(function (res) {
+    res.forEach(function (customer) {
+      allCustomers.push(customer._id);
+    });
+    let orderPromises = allCustomers.map(function (customer) {
+      return models.Order.find({customer_id: customer})
+      .then(function (res) {
+        allOrders.push(res);
+        return Promise.resolve();
+      });
+    });
+    return Promise.all(orderPromises)
+    .then(function () {
+      return allOrders;
+    });
+  });
 }
 
 function orders(data) {
 	var start = new Date(data.sy, data.sm - 1, data.sd);
   var end = new Date(data.ey, data.em-1, data.ed);
   var rep = [];
+  if (data.zipcode) {
+    return customerZipCode(data)
+    .then(function (res) {
+      return res;
+    });
+  }
+  if (data.occupation) {
+    return customerOccupation(data)
+    .then(function (res) {
+      return res;
+    })
+  }
 	if(data.employee){
 		return models.Order.find({employeeId:data.employee})
 		.then(function(res){
@@ -80,6 +132,7 @@ function orders(data) {
 		});
 	}
 }
+
 
 const handleError = (res, err) => {
   return res.status(500).send(String(err));
