@@ -3,6 +3,7 @@ const models = require('../../models');
 const menuController = require('./menu.controller.js');
 const customerController = require('./customerController.js');
 const {ObjectId} = require('mongodb');
+const productController = require('./product.controller.js')
 
 function create (data) {
 let sum = 0.00;
@@ -33,19 +34,50 @@ let nbrBev = 0; //antalet beverages som kunden lagt i denna beställning
           return Order.save()
               .then(function (res){
               let orderId = res;
-              return customerController.updateBeverages(ObjectId(res.customer_id), bev).then(function(res){
-                return models.Order.findById(orderId);
+              return customerController.updateBeverages(ObjectId(res.customer_id), bev)
+              .then(function(res){
+                return models.Order.findById(orderId)
+                .then(function (res) {
+                    let ingredientCheck = data.items.map(function(item) {
+                    return menuController.getMenuItem(item.menu_item)
+                    .then(function (res) {
+                      return updateAmount(res, orderId)
+                      .then(function(results) {
+                        return results;
+                      })
+                    })
+                    })
+                    return Promise.all(ingredientCheck)
+                    .then(function(){
+                      return Promise.resolve();
+                    })
+                    .catch(function (err) {
+                      return Promise.reject(err);
+                    })
+                  }) //here
+              })
         })
       })
+  })
+}
+
+function updateAmount(res, orderId) {
+  let check = res.ingredients.map(function (ingredient) {
+    return productController.updateAmount(ingredient.product, ingredient.amount, orderId)
+    .then(function (res) {
+      return models.Order.findById(orderId)
+      .then(function () {
+        return Promise.resolve()
+      })
     })
-  });
+})
+return Promise.all(check);
 }
 
 function sumPrices (menu_items, sum, beverages) {
 var i=0;
-
   let allPromises = menu_items.map(function (item) {
-        return menuController.getMenuItem(ObjectId(item.type))
+        return menuController.getMenuItem(ObjectId(item.menu_item))
         .then(function (res) {
             var discount = 0.00;
 

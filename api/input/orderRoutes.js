@@ -4,7 +4,7 @@ const orderController = require('../controllers/order.controller.js');
 
 //create new order
 function create (req, res){
-    orderController.create(req.body)
+  return orderController.create(req.body)
   .then(function (results) {
     handleResponse(res, results);
   })

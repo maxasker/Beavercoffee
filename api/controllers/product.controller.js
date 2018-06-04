@@ -52,8 +52,23 @@ function findOne (id) {
   return models.Product.findById(ObjectId(id));
 }
 
-function updateAmount (id, amount) {
-  return models.Product.findOneAndUpdate({_id: id}, {quantity: {total_amount: amount}});
+function updateAmount (id, amount, order) {
+  // console.log('id:' + id);
+  return models.Product.findById(ObjectId(id))
+  .then(function (res) {
+    if ((res.quantity.total_amount-amount) < 0) {
+      return models.Order.deleteOne(order._id)
+      .then(function () {
+        return Promise.reject(new Error('Amount of ' + res.name + ' is too low.'));
+      })
+    }
+    let newAmount = res.quantity.total_amount - amount;
+    return models.Product.findOneAndUpdate({_id: id}, {quantity: {total_amount: newAmount, metric: res.quantity.metric, pkg_amount: newAmount}})
+  })
+  .catch(function(err){
+    return Promise.reject(order)
+    //return Promise.reject('Orders created');
+  })
 }
 
 module.exports = {

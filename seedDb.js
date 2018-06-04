@@ -6,6 +6,7 @@ const menuController = require('./api/controllers/menu.controller.js');
 const seedData = require('./seederJson.js');
 const customerController = require('./api/controllers/customerController.js');
 const orderController = require('./api/controllers/order.controller.js');
+const {ObjectId} = require('mongodb');
 let storeIds = [];
 let amountOfOrders = [0, 1, 2, 3];
 
@@ -73,14 +74,21 @@ function generateOrders (employeeIds, customerIds, storeId) {
       order.customer_id = customer;
       let nbrOfOrders = (Math.floor(Math.random() * 6) + 1);
       for (let i = 0; i < nbrOfOrders; i++) {
+        let whatRes = Math.floor(Math.random() * res.length);
+        if (res[whatRes] === false) {
+          whatres = 1;
+        }
         order.items.push({
-          type: res[Math.floor(Math.random() * res.length)],
+          menu_item: ObjectId(res[whatRes]),
           quantity: 1
         });
       }
       return orderController.create(order)
       .then(function () {
         return Promise.resolve();
+      })
+      .catch(function(err) {
+        console.log('Seeding...');
       });
     });
     return Promise.all(orderPromises);
