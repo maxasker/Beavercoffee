@@ -29,6 +29,7 @@ let nbrBev = 0; //antalet beverages som kunden lagt i denna beställning
 
       return sumPrices(data.items, sum, parseInt(res.beverages))
       .then(function (newSum) {
+				if(res.isEmployee = true) newSum = (newSum*0.9);
           data.price=newSum;
           const Order = new models.Order(data);
           return Order.save()
@@ -49,7 +50,7 @@ let nbrBev = 0; //antalet beverages som kunden lagt i denna beställning
                     })
                     return Promise.all(ingredientCheck)
                     .then(function(){
-                      return Promise.resolve();
+                      return models.Order.findById(orderId);
                     })
                     .catch(function (err) {
                       return Promise.reject(err);
@@ -77,7 +78,8 @@ return Promise.all(check);
 function sumPrices (menu_items, sum, beverages) {
 var i=0;
   let allPromises = menu_items.map(function (item) {
-        return menuController.getMenuItem(ObjectId(item.menu_item))
+				console.log(item.menu_item);
+        return menuController.getMenuItem(item.menu_item)
         .then(function (res) {
             var discount = 0.00;
 
