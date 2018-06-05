@@ -26,6 +26,7 @@ Start the preloaded server:
 	- [GET /employees/{employeeId}/comments](#getcomm)
 - Customers
 	- [POST /customer](#postcust)
+	- [GET /customer](#getcusts)
 	- [GET /customer/{customerId}](#getcust)
 	- [PUT /customer/{customerId}](#putcust)
 	- [PUT /customer/{customerId}/beverages](#putbev)
@@ -214,6 +215,17 @@ Creates a new customer
 		"member_since": Date
   	}	
 	```
+	
+## <a name="getcusts">GET /customer</a>
+Returns all customers
+
+- **URL params**
+	
+	None
+- **Data params**
+
+	None
+	
 ## <a name="getcust">GET /customer/{customerId}</a>
 Returns a single customer
 
